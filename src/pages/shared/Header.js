@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import styled from "styled-components";
 import { colors } from "../../components/constants";
-import { Icon } from "../../assets";
+// import { Icon } from "../../assets";
 import { MdMenu, MdClose } from "react-icons/md";
 
 // import LinkedInIcon from "../../assets/icons/icons8-linkedin-64.png";

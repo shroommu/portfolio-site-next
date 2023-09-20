@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Delicious Handrawn";
-    src: local('Delicious Handrawn'), url(../assets/fonts/Delicious_Handrawn/DeliciousHandrawn-Regular.ttf) format('truetype');
+    src: local('Delicious Handrawn'), url(../../public/assets/fonts/Delicious_Handrawn/DeliciousHandrawn-Regular.ttf) format('truetype');
 }
 
 @font-face {
     font-family: "Bitter";
-    src: local('Bitter'), url(../assets/fonts/Bitter/Bitter-VariableFont_wght.ttf) format('truetype');
+    src: local('Bitter'), url(../../public/assets/fonts/Bitter/Bitter-VariableFont_wght.ttf) format('truetype');
 }
 
 html, body {

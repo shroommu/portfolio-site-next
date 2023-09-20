@@ -8,7 +8,7 @@ import { Heading as StyleableHeading } from "../shared";
 import { device } from "../constants";
 import { colors } from "../../components/constants";
 
-// import pfp from "../../assets/images/pfp-circle.png";
+import pfp from "../../../public/assets/images/pfp-circle.png";
 
 const Container = styled.div`
   display: flex;
@@ -83,9 +83,9 @@ export default function Greeting() {
     <Section testId="greeting-section">
       <Card testId="greeting-card">
         <Container test-id="greeting-container">
-          {/* <ProfilePictureContainer test-id="profile-picture-container">
+          <ProfilePictureContainer test-id="profile-picture-container">
             <ProfilePicture src={pfp} test-id="profile-picture" />
-          </ProfilePictureContainer> */}
+          </ProfilePictureContainer>
           <TextContainer test-id="greeting-text-container">
             <Heading test-id="greeting-header">Hi, I&apos;m Alexa!</Heading>
             <SubHeading test-id="greeting-subheader">

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { device } from "../constants";
 import { colors } from "../../components/constants";
 
-import { Tree1, Tree2, Tree3 } from "../../assets";
+// import { Tree1, Tree2, Tree3 } from "../../assets";
 // import fox from "../../assets/svg/fox.svg";
 
 const BackgroundContainer = styled.div`
