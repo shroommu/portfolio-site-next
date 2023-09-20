@@ -5,7 +5,7 @@ import { device } from "../constants";
 import { colors } from "../../components/constants";
 
 import { Tree1, Tree2, Tree3 } from "../../assets";
-import fox from "../../assets/svg/fox.svg";
+// import fox from "../../assets/svg/fox.svg";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -86,15 +86,15 @@ const TreesRightContainer = styled.div`
   }
 `;
 
-const FoxArt = styled(fox)`
-  transform: translate(
-    calc(calc(${(p) => p.offsetX}px - 250px) / 5),
-    calc(${(p) => p.offsetY}px - ${(p) => p.offsetY / 3.5}px)
-  );
-  z-index: 22;
-  position: absolute;
-  max-height: 125px;
-`;
+// const FoxArt = styled(fox)`
+//   transform: translate(
+//     calc(calc(${(p) => p.offsetX}px - 250px) / 5),
+//     calc(${(p) => p.offsetY}px - ${(p) => p.offsetY / 3.5}px)
+//   );
+//   z-index: 22;
+//   position: absolute;
+//   max-height: 125px;
+// `;
 
 export default function Background() {
   const [foxOffset, setFoxOffset] = useState([0, 0]);
