@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import UnstyledImage from "next/image";
+
 import { colors } from "../../components/constants";
 
 export const Header1 = styled.h1`

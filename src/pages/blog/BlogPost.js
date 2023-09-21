@@ -5,7 +5,6 @@ import Card from "../../components/Card";
 import Section from "../../components/Section";
 import { Header1 } from "./styles";
 
-import postMetaData from "../../data/blogMetadata.json";
 import { locations } from "../constants";
 
 const Container = styled.article`
@@ -23,22 +22,18 @@ const BackLinkContainer = styled.div`
   text-decoration: underline;
 `;
 
-export default function BlogPost() {
+export default function BlogPost({ source, children }) {
   const location = useRouter();
 
-  const pageSlug = location.pathname.split("/")[3];
-
-  const thisPostMetaData = postMetaData.filter(
-    (post) => post.slug.split("/")[1] === pageSlug
-  )[0];
+  console.log(source);
 
   return (
     <Section testId="blog-post-section">
       <Card testId="blog-post-card">
         <Container testId="blog-post-container">
-          <Header1>{thisPostMetaData.title}</Header1>
-          <Date>{thisPostMetaData.date}</Date>
-          {/* <Outlet /> */}
+          <Header1>{source.frontmatter.title}</Header1>
+          <Date>{source.frontmatter.date}</Date>
+          {children}
           <BackLinkContainer>
             <Link href={locations.BLOG}>← Back</Link>
           </BackLinkContainer>

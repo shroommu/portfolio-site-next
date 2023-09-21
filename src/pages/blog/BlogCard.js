@@ -16,6 +16,10 @@ const Card = styled(UnstyledCard)`
   &:hover {
     transform: translate(0, -10px) rotate(2deg);
   }
+
+  @media ${device.tablet} {
+    max-width: 100%;
+  }
 `;
 
 const Container = styled.div`
@@ -31,12 +35,15 @@ const ImageContainer = styled.div`
   display: flex;
   max-width: 100%;
   margin-bottom: 12px;
+  position: relative;
 `;
 
 const Image = styled(UnstyledImage)`
   max-width: 100%;
   max-height: 100%;
   margin: auto;
+  width: 100%
+  height: auto;
 `;
 
 const TextContainer = styled.div`
@@ -99,7 +106,14 @@ export default function BlogCard({ postMetaData }) {
       <Link href={`/blog/post${slug}`}>
         <Container>
           <ImageContainer>
-            <Image src={image} alt="" />
+            <Image
+              src={image}
+              alt=""
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }}
+            />
           </ImageContainer>
           <TextContainer>
             <Title>{title}</Title>
