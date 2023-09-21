@@ -20,9 +20,6 @@ export const PageContainer = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  background: ${colors.darkBlue};
-  height: calc(100% + ${footerHeight}px);
   overflow: scroll;
   margin: -50px -50px 0 0;
   padding: 50px 50px 0 0;
@@ -47,6 +44,14 @@ export const ContentContainer = styled.div`
       hsl(207deg 69% 15%) 100%
     );
   }
+`;
+
+export const BackgroundGrass = styled.div`
+  flex: 1;
+  background-color: #0c2941;
+  height: 100%;
+  z-index: 0;
+  width: 100%;
 `;
 
 export const Heading = styled.h1`

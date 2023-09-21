@@ -7,20 +7,30 @@ import { locations, device } from "../constants";
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
   height: ${footerHeight}px;
   background: ${colors.darkestBlue};
-  margin: 24px -50px 0 0;
+  margin: 0 -50px 0 0;
   z-index: 1;
   padding: 25px 75px 25px 25px;
+`;
+
+const ContentContainer = styled.div`
+  margin-left: auto;
+  @media ${device.tablet} {
+    margin-left: 0;
+  }
 `;
 
 const CopyrightContainer = styled.div`
   color: ${colors.white};
   margin-top: 8px;
+  text-align: right;
+
+  @media ${device.tablet} {
+    text-align: center;
+  }
 `;
 
 export const WebsiteName = styled.div`
@@ -36,10 +46,12 @@ export const WebsiteName = styled.div`
 export default function Footer() {
   return (
     <Container test-id="footer-container">
-      <Link href={locations.INDEX}>
-        <WebsiteName>Alexa Kruckenberg</WebsiteName>
-      </Link>
-      <CopyrightContainer>Copyright 2023</CopyrightContainer>
+      <ContentContainer>
+        <Link href={locations.INDEX}>
+          <WebsiteName>Alexa Kruckenberg</WebsiteName>
+        </Link>
+        <CopyrightContainer>Copyright 2023</CopyrightContainer>
+      </ContentContainer>
     </Container>
   );
 }

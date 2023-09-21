@@ -72,6 +72,10 @@ const ProfilePicture = styled(Image)`
   display: block;
   max-width: 100%;
   max-height: 300px;
+  color: transparent;
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: auto;
 
   @media ${device.mobile} {
     max-height: 150px;

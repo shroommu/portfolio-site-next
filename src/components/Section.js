@@ -3,7 +3,6 @@ import { device } from "../pages/constants";
 
 const Container = styled.section`
   display: flex;
-  flex: 1;
   padding: ${(p) => p.padding};
   margin: ${(p) => p.margin};
 

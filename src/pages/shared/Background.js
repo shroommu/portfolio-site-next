@@ -18,6 +18,7 @@ const BackgroundContainer = styled.div`
   position: absolute;
   overflow-x: clip;
   pointer-events: none;
+  z-index: 2;
 
   @media ${device.tablet} {
     display: none;
@@ -89,7 +90,8 @@ const TreesRightContainer = styled.div`
 const FoxTreeContainer = styled.div`
   position: absolute;
   height: 95%;
-  bottom: -5%;
+  height: 100%;
+  max-width: 65%;
 `;
 
 const FoxArt = styled(fox)`
@@ -140,7 +142,7 @@ export default function Background() {
               fillColor={colors.middleTree}
               zIndex={22}
               height="95%"
-              maxWidth="65%"
+              maxWidth="100%"
               bottomPos="5%"
               preserveAspectRatio="none"
               position="relative"
