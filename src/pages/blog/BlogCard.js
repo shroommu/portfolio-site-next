@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import UnstyledImage from "next/image";
 
 import UnstyledCard from "../../components/Card";
 import { colors } from "../../components/constants";
@@ -32,7 +33,7 @@ const ImageContainer = styled.div`
   margin-bottom: 12px;
 `;
 
-const Image = styled.img`
+const Image = styled(UnstyledImage)`
   max-width: 100%;
   max-height: 100%;
   margin: auto;
@@ -98,7 +99,7 @@ export default function BlogCard({ postMetaData }) {
       <Link href={`/blog/post${slug}`}>
         <Container>
           <ImageContainer>
-            <Image src={image} />
+            <Image src={image} alt="" />
           </ImageContainer>
           <TextContainer>
             <Title>{title}</Title>

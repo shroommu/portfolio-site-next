@@ -9,6 +9,7 @@ export default function App({ Component, pageProps }) {
   return (
     <PageContainer>
       <Header />
+      <Background />
       <ContentContainer>
         <Component {...pageProps} />
         <Footer />

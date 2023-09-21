@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { device } from "../constants";
 import { colors } from "../../components/constants";
 
-// import { Tree1, Tree2, Tree3 } from "../../assets";
-// import fox from "../../assets/svg/fox.svg";
+import { Tree1, Tree2, Tree3 } from "../../../public/assets/";
+import fox from "../../../public/assets/svg/fox.svg";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -86,15 +86,21 @@ const TreesRightContainer = styled.div`
   }
 `;
 
-// const FoxArt = styled(fox)`
-//   transform: translate(
-//     calc(calc(${(p) => p.offsetX}px - 250px) / 5),
-//     calc(${(p) => p.offsetY}px - ${(p) => p.offsetY / 3.5}px)
-//   );
-//   z-index: 22;
-//   position: absolute;
-//   max-height: 125px;
-// `;
+const FoxTreeContainer = styled.div`
+  position: absolute;
+  height: 95%;
+  bottom: -5%;
+`;
+
+const FoxArt = styled(fox)`
+  transform: translate(
+    calc(calc(${(p) => p.offsetX}px - 200px) / 5),
+    calc(${(p) => p.offsetY}px - ${(p) => p.offsetY / 3.5}px)
+  );
+  z-index: 22;
+  position: absolute;
+  max-height: 125px;
+`;
 
 export default function Background() {
   const [foxOffset, setFoxOffset] = useState([0, 0]);
@@ -107,7 +113,7 @@ export default function Background() {
   }, []);
 
   const updateSize = () => {
-    const { right, bottom } = foxTreeRef.current.getBoundingClientRect();
+    const { right, bottom } = foxTreeRef.current?.getBoundingClientRect();
     setFoxOffset([right, bottom]);
   };
 
@@ -129,16 +135,18 @@ export default function Background() {
             maxWidth="65%"
             testId="closest-tree-left"
           />
-          <Tree3
-            fillColor={colors.middleTree}
-            zIndex={22}
-            height="95%"
-            maxWidth="65%"
-            bottomPos="5%"
-            preserveAspectRatio="none"
-            testId="middle-tree-left"
-            ref={foxTreeRef}
-          />
+          <FoxTreeContainer ref={foxTreeRef}>
+            <Tree3
+              fillColor={colors.middleTree}
+              zIndex={22}
+              height="95%"
+              maxWidth="65%"
+              bottomPos="5%"
+              preserveAspectRatio="none"
+              position="relative"
+              testId="middle-tree-left"
+            />
+          </FoxTreeContainer>
           <FoxArt
             test-id="fox-art"
             offsetX={foxOffset[0]}

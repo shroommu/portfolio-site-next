@@ -3,6 +3,7 @@ import { css } from "styled-components";
 export const treeStyles = ({
   fillColor,
   zIndex,
+  position,
   rightPos,
   leftPos,
   bottomPos,
@@ -13,7 +14,7 @@ export const treeStyles = ({
   return css`
     height: ${height};
     max-width: ${maxWidth};
-    position: absolute;
+    position: ${position || "absolute"};
     flex: 1;
     z-index: ${zIndex};
 
