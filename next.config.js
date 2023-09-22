@@ -1,4 +1,5 @@
 module.exports = {
+  output: "export",
   trailingSlash: true,
   distDir: "build",
   webpack(config) {
