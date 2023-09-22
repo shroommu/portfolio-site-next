@@ -27,7 +27,7 @@ export default function PostPage({ source }) {
   return (
     <div>
       <Head>
-        <title>{source.frontmatter.title}</title>
+        <title>{source?.frontmatter?.title}</title>
       </Head>
       <BlogPost source={source}>
         <MDXRemote
@@ -40,7 +40,7 @@ export default function PostPage({ source }) {
   );
 }
 export async function getStaticPaths() {
-  return { paths: [], fallback: "blocking" };
+  return { paths: [], fallback: false };
 }
 
 export async function getStaticProps(ctx) {
