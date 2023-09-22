@@ -55,5 +55,6 @@ export async function getStaticProps(ctx) {
     props: {
       source: mdxSource,
     },
+    revalidate: 60,
   };
 }
