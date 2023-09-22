@@ -63,7 +63,7 @@ export async function getStaticProps() {
 
   for (const postFilePath of postFilePaths) {
     const postFile = fs.readFileSync(
-      process.cwd() + `_posts/${postFilePath}`,
+      process.cwd() + `/_posts/${postFilePath}`,
       "utf8"
     );
 

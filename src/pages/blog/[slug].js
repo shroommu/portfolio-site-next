@@ -42,7 +42,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(ctx) {
   const { slug } = ctx.params;
 
-  const postFile = fs.readFileSync(process.cwd() + `_posts/${slug}.mdx`);
+  const postFile = fs.readFileSync(process.cwd() + `/_posts/${slug}.mdx`);
 
   const mdxSource = await serialize(postFile, { parseFrontmatter: true });
 
