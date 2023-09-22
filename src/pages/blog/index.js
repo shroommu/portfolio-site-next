@@ -62,7 +62,10 @@ export async function getStaticProps() {
   const postPreviews = [];
 
   for (const postFilePath of postFilePaths) {
-    const postFile = fs.readFileSync(`_posts/${postFilePath}`, "utf8");
+    const postFile = fs.readFileSync(
+      process.cwd() + `_posts/${postFilePath}`,
+      "utf8"
+    );
 
     const serializedPost = await serialize(postFile, {
       parseFrontmatter: true,
