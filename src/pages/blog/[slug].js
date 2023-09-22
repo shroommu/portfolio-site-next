@@ -24,8 +24,6 @@ const components = {
 };
 
 export default function PostPage({ source }) {
-  console.log(source);
-
   return (
     <div>
       <Head>
