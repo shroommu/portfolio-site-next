@@ -29,15 +29,9 @@ export default function PostPage({ source }) {
       <Head>
         <title>{source?.frontmatter?.title}</title>
       </Head>
-      {source && (
-        <BlogPost source={source}>
-          <MDXRemote
-            {...source}
-            // specifying the custom MDX components
-            components={components}
-          />
-        </BlogPost>
-      )}
+      <BlogPost source={source}>
+        <MDXRemote {...source} components={components} />
+      </BlogPost>
     </div>
   );
 }
@@ -51,6 +45,7 @@ export async function getStaticProps(ctx) {
   const postFile = fs.readFileSync(`_posts/${slug}.mdx`);
 
   const mdxSource = await serialize(postFile, { parseFrontmatter: true });
+
   return {
     props: {
       source: mdxSource,

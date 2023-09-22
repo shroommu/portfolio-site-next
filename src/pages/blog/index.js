@@ -78,5 +78,6 @@ export async function getStaticProps() {
     props: {
       postPreviews: postPreviews,
     },
+    revalidate: 60,
   };
 }
