@@ -8,7 +8,7 @@ import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import LabeledElement from "../../components/LabeledElement";
 import Button, { themes } from "../../components/Button";
-import { Heading as UnstyledHeading } from "../shared";
+import { Heading as UnstyledHeading } from "../../components/shared";
 
 const Heading = styled(UnstyledHeading)`
   text-align: center;

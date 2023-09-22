@@ -3,7 +3,15 @@ import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
 import BlogPost from "./BlogPost";
-import { Header1, Header2, Paragraph, Pre, Code, Link, Image } from "./styles";
+import {
+  Header1,
+  Header2,
+  Paragraph,
+  Pre,
+  Code,
+  Link,
+  Image,
+} from "../../components/Blog/styles";
 
 const components = {
   h1: Header1,
@@ -45,7 +53,5 @@ export async function getStaticProps(ctx) {
     props: {
       source: mdxSource,
     },
-    // enable ISR
-    revalidate: 60,
   };
 }

@@ -4,7 +4,7 @@ import UnstyledImage from "next/image";
 
 import UnstyledCard from "../../components/Card";
 import { colors } from "../../components/constants";
-import { device } from "../constants";
+import { device } from "../../constants";
 
 const Card = styled(UnstyledCard)`
   border: 2px solid ${colors.lightestBlue};
@@ -96,15 +96,13 @@ const ReadMoreLink = styled.div`
 `;
 
 export default function BlogCard({ postPreview }) {
-  const { slug, excerpt, title, image, tags } = postPreview;
-
   return (
     <Card>
-      <Link href={`/blog/${slug}`}>
+      <Link href={`/blog/${postPreview?.slug}`}>
         <Container>
           <ImageContainer>
             <Image
-              src={image}
+              src={postPreview?.image}
               alt=""
               width={0}
               height={0}
@@ -113,10 +111,10 @@ export default function BlogCard({ postPreview }) {
             />
           </ImageContainer>
           <TextContainer>
-            <Title>{title}</Title>
-            <Excerpt>{excerpt}</Excerpt>
+            <Title>{postPreview?.title}</Title>
+            <Excerpt>{postPreview?.excerpt}</Excerpt>
             <TagContainer>
-              {tags.map((tag) => {
+              {postPreview?.tags.map((tag) => {
                 return <Tag key={tag}>{tag}</Tag>;
               })}
             </TagContainer>

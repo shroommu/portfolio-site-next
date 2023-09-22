@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 import Button, { themes } from "../Button";
-import { device, locations } from "../../pages/constants";
+import { device, locations } from "../../constants";
 
 const NavButtonContainer = styled.div`
   display: flex;

@@ -4,8 +4,8 @@ import Image from "next/image";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
 
-import { Heading as StyleableHeading } from "../shared";
-import { device } from "../constants";
+import { Heading as StyleableHeading } from "../../components/shared";
+import { device } from "../../constants";
 import { colors } from "../../components/constants";
 
 import pfp from "../../../public/assets/images/pfp-circle.png";

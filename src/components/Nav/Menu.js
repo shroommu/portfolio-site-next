@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { device, locationsWithLabels } from "../../pages/constants";
+import { device, locationsWithLabels } from "../../constants";
 import { colors } from "../constants";
 
 const Container = styled.div`

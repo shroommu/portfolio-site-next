@@ -2,9 +2,9 @@ import styled from "styled-components";
 import Link from "next/link";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
-import { Header1 } from "./styles";
+import { Header1 } from "../../components/Blog/styles";
 
-import { locations } from "../constants";
+import { locations } from "../../constants";
 
 const Container = styled.article`
   display: flex;
@@ -26,8 +26,8 @@ export default function BlogPost({ source, children }) {
     <Section testId="blog-post-section">
       <Card testId="blog-post-card">
         <Container testId="blog-post-container">
-          <Header1>{source.frontmatter.title}</Header1>
-          <Date>{source.frontmatter.date}</Date>
+          <Header1>{source?.frontmatter?.title}</Header1>
+          <Date>{source?.frontmatter?.date}</Date>
           {children}
           <BackLinkContainer>
             <Link href={locations.BLOG}>← Back</Link>

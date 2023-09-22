@@ -1,14 +1,14 @@
 import "./global.css";
 
-import Header from "./shared/Header.js";
-import Footer from "./shared/Footer.js";
-import Background from "./shared/Background.js";
+import Header from "../components/shared/Header.js";
+import Footer from "../components/shared/Footer.js";
+import Background from "../components/shared/Background.js";
 import {
   ContentContainer,
   PageContainer,
   BackgroundGrass,
   Filler,
-} from "./shared/index.js";
+} from "../components/shared/index.js";
 
 export default function App({ Component, pageProps }) {
   return (

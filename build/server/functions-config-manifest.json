@@ -2,10 +2,6 @@
   "version": 1,
   "functions": {
     "/blog/[slug]": {},
-    "/blog": {},
-    "/blog/styles": {},
-    "/constants": {},
-    "/shared/Footer": {},
-    "/shared": {}
+    "/blog": {}
   }
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../pages/constants";
+import { device } from "../constants";
 
 const Container = styled.section`
   display: flex;
