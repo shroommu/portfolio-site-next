@@ -29,13 +29,15 @@ export default function PostPage({ source }) {
       <Head>
         <title>{source?.frontmatter?.title}</title>
       </Head>
-      <BlogPost source={source}>
-        <MDXRemote
-          {...source}
-          // specifying the custom MDX components
-          components={components}
-        />
-      </BlogPost>
+      {source && (
+        <BlogPost source={source}>
+          <MDXRemote
+            {...source}
+            // specifying the custom MDX components
+            components={components}
+          />
+        </BlogPost>
+      )}
     </div>
   );
 }
