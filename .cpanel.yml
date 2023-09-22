@@ -2,5 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home3/alexakru/public_html/
-    - /bin/cp -r /home3/alexakru/portfolio-site-next/build/* $DEPLOYPATH
-    - /bin/cp -r /home3/alexakru/portfolio-site-next/.htaccess $DEPLOYPATH
+    - /bin/cp -frd /home3/alexakru/portfolio-site-next/build/* $DEPLOYPATH

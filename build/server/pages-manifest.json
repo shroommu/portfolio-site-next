@@ -1,0 +1,23 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/blog/BlogCard": "pages/blog/BlogCard.js",
+  "/art": "pages/art.js",
+  "/_document": "pages/_document.js",
+  "/blog/BlogPost": "pages/blog/BlogPost.js",
+  "/blog/routes": "pages/blog/routes.js",
+  "/code": "pages/code.js",
+  "/contact": "pages/contact.js",
+  "/home/Greeting": "pages/home/Greeting.js",
+  "/home/featured": "pages/home/featured.js",
+  "/": "pages/index.js",
+  "/shared/Background": "pages/shared/Background.js",
+  "/shared/ScrollToTop": "pages/shared/ScrollToTop.js",
+  "/shared/Header": "pages/shared/Header.js",
+  "/blog/[slug]": "pages/blog/[slug].js",
+  "/blog": "pages/blog.js",
+  "/blog/styles": "pages/blog/styles.js",
+  "/shared/Footer": "pages/shared/Footer.js",
+  "/constants": "pages/constants.js",
+  "/shared": "pages/shared.js"
+}
