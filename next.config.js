@@ -1,8 +1,5 @@
-const withImages = require("next-images");
 module.exports = {
-  compiler: {
-    styledComponents: true,
-  },
+  trailingSlash: true,
   distDir: "build",
   webpack(config) {
     config.module.rules.push({

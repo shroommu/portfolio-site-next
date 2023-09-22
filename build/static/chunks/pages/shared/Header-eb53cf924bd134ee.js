@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[894],{1841:function(n,_,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/shared/Header",function(){return u(2660)}])}},function(n){n.O(0,[774,888,179],function(){return n(n.s=1841)}),_N_E=n.O()}]);
