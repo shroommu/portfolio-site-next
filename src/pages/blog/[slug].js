@@ -27,7 +27,7 @@ export default function PostPage({ source }) {
   return (
     <div>
       <Head>
-        <title>{source?.frontmatter?.title}</title>
+        <title>{source.frontmatter.title}</title>
       </Head>
       <BlogPost source={source}>
         <MDXRemote {...source} components={components} />
