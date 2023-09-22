@@ -38,12 +38,8 @@ export async function getStaticPaths() {
 export async function getStaticProps(ctx) {
   const { slug } = ctx.params;
 
-  // retrieve the MDX blog post file associated
-  // with the specified slug parameter
   const postFile = fs.readFileSync(`_posts/${slug}.mdx`);
 
-  // read the MDX serialized content along with the frontmatter
-  // from the .mdx blog post file
   const mdxSource = await serialize(postFile, { parseFrontmatter: true });
   return {
     props: {

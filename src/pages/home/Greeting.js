@@ -15,7 +15,7 @@ const Container = styled.div`
   flex-direction: row-reverse;
   justify-content: center;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     flex-direction: column;
   }
 `;
@@ -63,6 +63,10 @@ const ProfilePictureContainer = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
+
+  @media ${device.laptop} {
+    margin-bottom: 24px;
+  }
 `;
 
 const ProfilePicture = styled(Image)`

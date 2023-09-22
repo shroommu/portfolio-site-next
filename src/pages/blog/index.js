@@ -1,11 +1,15 @@
+import fs from "fs";
+import path from "path";
+import { serialize } from "next-mdx-remote/serialize";
+import styled from "styled-components";
+
 import Section from "../../components/Section";
 import Card from "../../components/Card";
-import styled from "styled-components";
 import { Heading } from "../shared";
 
-import blogMetadata from "../../data/blogMetadata.json";
-import BlogCard from "./BlogCard";
 import { device } from "../constants";
+
+import BlogCard from "./BlogCard";
 
 const Container = styled.div`
   display: flex;
@@ -27,19 +31,19 @@ const ContentContainer = styled.div`
   }
 `;
 
-export default function Blog() {
+export default function Blog({ postPreviews }) {
   return (
     <Section testId="blog-home-section">
       <Card testId="blog-home-card">
         <Container test-id="blog-card-content-container">
           <Heading>Blog Posts</Heading>
           <ContentContainer test-id="blog-posts-container">
-            {blogMetadata.map((postMetaData) => {
+            {postPreviews.map((postPreview) => {
               return (
                 <BlogCard
-                  postMetaData={postMetaData}
-                  key={postMetaData.slug}
-                  testId={`blog-card-${postMetaData.slug}`}
+                  postPreview={postPreview}
+                  key={postPreview.slug}
+                  testId={`blog-card-${postPreview.slug}`}
                 />
               );
             })}
@@ -48,4 +52,32 @@ export default function Blog() {
       </Card>
     </Section>
   );
+}
+
+export async function getStaticProps() {
+  const postFilePaths = fs.readdirSync("_posts").filter((postFilePath) => {
+    return path.extname(postFilePath).toLowerCase() === ".mdx";
+  });
+
+  const postPreviews = [];
+
+  for (const postFilePath of postFilePaths) {
+    const postFile = fs.readFileSync(`_posts/${postFilePath}`, "utf8");
+
+    const serializedPost = await serialize(postFile, {
+      parseFrontmatter: true,
+    });
+
+    postPreviews.push({
+      ...serializedPost.frontmatter,
+      slug: postFilePath.replace(".mdx", ""),
+    });
+  }
+
+  return {
+    props: {
+      postPreviews: postPreviews,
+    },
+    revalidate: 60,
+  };
 }

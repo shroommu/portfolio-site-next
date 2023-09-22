@@ -89,7 +89,6 @@ const TreesRightContainer = styled.div`
 
 const FoxTreeContainer = styled.div`
   position: absolute;
-  height: 95%;
   height: 100%;
   max-width: 65%;
 `;
@@ -97,7 +96,7 @@ const FoxTreeContainer = styled.div`
 const FoxArt = styled(fox)`
   transform: translate(
     calc(calc(${(p) => p.offsetX}px - 200px) / 5),
-    calc(${(p) => p.offsetY}px - ${(p) => p.offsetY / 3.5}px)
+    calc(${(p) => p.offsetY}px - ${(p) => p.offsetY / 3}px)
   );
   z-index: 22;
   position: absolute;
@@ -141,7 +140,7 @@ export default function Background() {
             <Tree3
               fillColor={colors.middleTree}
               zIndex={22}
-              height="95%"
+              height="100%"
               maxWidth="100%"
               bottomPos="5%"
               preserveAspectRatio="none"

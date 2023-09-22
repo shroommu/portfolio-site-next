@@ -7,6 +7,7 @@ import {
   ContentContainer,
   PageContainer,
   BackgroundGrass,
+  Filler,
 } from "./shared/index.js";
 
 export default function App({ Component, pageProps }) {
@@ -16,9 +17,10 @@ export default function App({ Component, pageProps }) {
       <Background />
       <ContentContainer>
         <Component {...pageProps} />
+        <Filler />
+        <Footer />
       </ContentContainer>
       <BackgroundGrass />
-      <Footer />
     </PageContainer>
   );
 }

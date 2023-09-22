@@ -17,7 +17,7 @@ const Card = styled(UnstyledCard)`
     transform: translate(0, -10px) rotate(2deg);
   }
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     max-width: 100%;
   }
 `;
@@ -42,7 +42,7 @@ const Image = styled(UnstyledImage)`
   max-width: 100%;
   max-height: 100%;
   margin: auto;
-  width: 100%
+  width: 100%;
   height: auto;
 `;
 
@@ -87,10 +87,7 @@ const Tag = styled.div`
   background-color: ${colors.orange};
   color: ${colors.white};
   width: fit-content;
-
-  @media ${device.tablet} {
-    font-size: 12px;
-  }
+  font-size: 12px;
 `;
 
 const ReadMoreLink = styled.div`
@@ -98,12 +95,12 @@ const ReadMoreLink = styled.div`
   text-decoration: underline;
 `;
 
-export default function BlogCard({ postMetaData }) {
-  const { slug, excerpt, title, image, tags } = postMetaData;
+export default function BlogCard({ postPreview }) {
+  const { slug, excerpt, title, image, tags } = postPreview;
 
   return (
     <Card>
-      <Link href={`/blog/post${slug}`}>
+      <Link href={`/blog/${slug}`}>
         <Container>
           <ImageContainer>
             <Image
@@ -112,7 +109,7 @@ export default function BlogCard({ postMetaData }) {
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: "100%", height: "auto" }}
+              priority
             />
           </ImageContainer>
           <TextContainer>

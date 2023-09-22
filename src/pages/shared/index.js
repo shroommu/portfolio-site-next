@@ -23,6 +23,7 @@ export const ContentContainer = styled.div`
   overflow: scroll;
   margin: -50px -50px 0 0;
   padding: 50px 50px 0 0;
+  height: 100%;
 
   @media ${device.tablet} {
     overflow: unset;
@@ -52,6 +53,11 @@ export const BackgroundGrass = styled.div`
   height: 100%;
   z-index: 0;
   width: 100%;
+  position: absolute;
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const Heading = styled.h1`
@@ -71,6 +77,6 @@ export const WebsiteName = styled.div`
   }
 `;
 
-export const MobileBackground = styled.div`
-  display: none;
+export const Filler = styled.div`
+  flex: 1;
 `;

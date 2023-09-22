@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 import tree1 from "./svg/tree1.svg";
 import tree2 from "./svg/tree2.svg";
@@ -17,6 +16,6 @@ export const Tree3 = styled(tree3)`
   ${(props) => treeStyles(props)}
 `;
 
-// export const Icon = styled(Image)`
-//   ${(props) => iconStyles(props)};
-// `;
+export const Icon = styled.img`
+  ${(props) => iconStyles(props)};
+`;

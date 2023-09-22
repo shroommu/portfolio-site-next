@@ -1,16 +1,12 @@
 import React from "react";
 import { useCallback, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import styled from "styled-components";
 import { colors } from "../../components/constants";
-// import { Icon } from "../../assets";
+import { Icon } from "../../../public/assets/index.js";
 import { MdMenu, MdClose } from "react-icons/md";
 
-// import LinkedInIcon from "../../assets/icons/icons8-linkedin-64.png";
-// import GithubIcon from "../../assets/icons/icons8-github-64.png";
-// import InstagramIcon from "../../assets/icons/icons8-instagram-64.png";
 import Button, { themes } from "../../components/Button";
 import ExternalLink from "../../components/Link";
 import Nav from "../../components/Nav/index.js";
@@ -64,7 +60,6 @@ const MenuCloseIcon = styled(MdClose)`
 
 const SocialsContainer = styled.div`
   display: flex;
-  padding: 12px;
 
   @media ${device.tablet} {
     display: none;
@@ -124,9 +119,9 @@ export default function Header({ location }) {
               Contact
             </Button>
           </Link>
-          {/* <ExternalLink href="http://instagram.com/shroommu">
+          <ExternalLink href="http://instagram.com/shroommu">
             <Icon
-              src={InstagramIcon}
+              src="/assets/icons/icons8-instagram-64.png"
               height="48px"
               margin="0 8px 0 0"
               alt="instagram icon"
@@ -134,7 +129,7 @@ export default function Header({ location }) {
           </ExternalLink>
           <ExternalLink href="http://github.com/shroommu">
             <Icon
-              src={GithubIcon}
+              src="/assets/icons/icons8-github-64.png"
               height="48px"
               margin="0 8px 0 0"
               alt="github icon"
@@ -142,12 +137,12 @@ export default function Header({ location }) {
           </ExternalLink>
           <ExternalLink href="http://linkedin.com/in/alexa-kruckenberg">
             <Icon
-              src={LinkedInIcon}
+              src="/assets/icons/icons8-linkedin-64.png"
               height="48px"
               margin="0"
               alt="linkedin icon"
             />
-          </ExternalLink> */}
+          </ExternalLink>
         </SocialsContainer>
       </NavigationBar>
       <Leaves />

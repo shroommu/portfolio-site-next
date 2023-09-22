@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
 import { Header1 } from "./styles";
@@ -23,10 +22,6 @@ const BackLinkContainer = styled.div`
 `;
 
 export default function BlogPost({ source, children }) {
-  const location = useRouter();
-
-  console.log(source);
-
   return (
     <Section testId="blog-post-section">
       <Card testId="blog-post-card">

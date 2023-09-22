@@ -1,0 +1,114 @@
+---
+title: "Building My Site, Part 2"
+date: "09-15-2023"
+excerpt: "Let's talk about building a blog using MDX!"
+image: "/assets/images/posts/9-15-2023/mdx-logo.png"
+tags: ["mdx", "javascript"]
+---
+
+import { Image } from "../../components/blog/styles";
+
+No portfolio site is complete without a blog where you can listen to the owner ramble about their current projects, right? Right! And this site is no different.
+
+My requirements for a blog was that it should be easy to create and customize as needed, and MDX was the perfect solution for that.
+
+<Image src="/assets/images/posts/9-15-2023/mdx-logo.png" />
+
+For those not in the know, MDX is essentially a fancy Markdown file with the ability to embed React components. Super cool! I know it's kind of a staple for a lot of popular front end bloggers, judging by the sheer number of tutorials that exist for making a blog like this, but I was still blown away by how easy it is to author content like this.
+
+Setting up the correct configurations was... less easy. But there's a bit of a story to that.
+
+I've been working on getting a Meta Frontend Developer Certification, and one of the courses in that certification is what spurred me to create a portfolio site in the first place. The thing is, though, that the _official_ Meta React course has you create your app using `create-react-app`, which I later learned has essentially been deprecated. What the heck, Meta?
+
+I mean, I kind of get it. The certification is primarily for people who are brand new to React, so it would probably be a big ask to have people learn Next.js or Vite or one of the alternatives to CRA on top of that. But if I had known, I would have picked one of said alternatives! Purely because installing MDX and configuring it with CRA and webpack was just such a headache.
+
+For the most part, MDX worked out of the box for me, but I wanted to do some fancier stuff with frontmatter and metadata. To do that, I installed `remark-frontmatter`, which is a plugin for MDX that handles the metadata at the beginning of each blog post. Sidenote, that metadata is what I use for the blog homepage to create links to each post with the title and excerpt from each post.
+
+So this is the part where I share some code! Many thanks to dilanx, who created/maintains [CRACO](https://github.com/dilanx/craco/). CRA may be close to deprecated, but there are still awesome people out there making it work.
+
+The problem was that CRA, webpack, and MDX don't always get along, but I was able get the remark plugin working thanks to some CRACO phenagling. The CRACO config file I ended up needing is as follows:
+
+```
+const { addAfterLoader, loaderByName } = require("@craco/craco");
+const remarkFrontmatter = require("remark-frontmatter");
+
+module.exports = {
+  webpack: {
+    configure: (webpackConfig) => {
+      addAfterLoader(webpackConfig, loaderByName("babel-loader"), {
+        test: /\.(md|mdx)$/,
+        loader: require.resolve("@mdx-js/loader"),
+        options: {
+          providerImportSource: "@mdx-js/react",
+          remarkPlugins: [remarkFrontmatter, { type: "yaml", marker: "-" }],
+        },
+      });
+
+      return webpackConfig;
+    },
+  },
+};
+```
+
+Pretty simple stuff in the end, but it took a lot of hair-pulling to figure out what I needed to do. Hopefully this helps someone in the future!
+
+I also want to talk about how I pull out the metadata from each blog post. I wrote a simple script that I configured to run before each git commit, which reads the metadata using the `gray-matter` library, then writes it to a JSON file, which I can then read from the Blog home. Neat!
+
+Here's the code for that (thanks to [Caleb Olojo](https://www.freecodecamp.org/news/how-to-build-your-own-blog-with-next-js-and-mdx/) for a great tutorial on this):
+
+```
+var path = require("path");
+var fs = require("fs");
+var matter = require("gray-matter");
+var { sync } = require("glob");
+
+const articlesPath = path.join(process.cwd(), "src/data/posts");
+
+async function getSlug() {
+  const paths = sync(`${articlesPath}/*.mdx`);
+
+  return paths.map((path) => {
+    const pathContent = path.split("/");
+    const fileName = pathContent[pathContent.length - 1];
+    const [slug, _extension] = fileName.split(".");
+
+    return slug;
+  });
+}
+
+async function getArticleFromSlug(slugs) {
+  const allArticleMetadata = [];
+
+  for (const slug of slugs) {
+    const articleDir = path.join("src/data/posts", `${slug}.mdx`);
+
+    const source = fs.readFileSync(articleDir);
+    const { _content, data } = matter(source);
+
+    const metadata = {
+      filePath: articleDir,
+      slug: data.slug,
+      excerpt: data.excerpt,
+      title: data.title,
+      date: data.date,
+    };
+
+    allArticleMetadata.push(metadata);
+  }
+
+  fs.writeFileSync(
+    "src/data/blogMetadata.json",
+    JSON.stringify(allArticleMetadata),
+    {
+      flag: "w",
+    },
+    function () {}
+  );
+
+  console.log("Successfully wrote metadata to json file");
+}
+
+getSlug().then((slugs) => getArticleFromSlug(slugs));
+```
+
+And that's about it for creating a blog with MDX! See you next time!

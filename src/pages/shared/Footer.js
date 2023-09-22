@@ -12,8 +12,8 @@ const Container = styled.div`
   height: ${footerHeight}px;
   background: ${colors.darkestBlue};
   margin: 0 -50px 0 0;
-  z-index: 1;
-  padding: 25px 75px 25px 25px;
+  z-index: 2;
+  padding: 25px 86px 25px 36px;
 `;
 
 const ContentContainer = styled.div`

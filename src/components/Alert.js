@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "../assets";
-// import closeIcon from "../assets/icons/x-Icon.png";
+import { Icon } from "../../public/assets";
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +13,12 @@ export default function Alert({ testId, children, color, onClose }) {
   return (
     <Container test-id={testId} color={color}>
       {children}
-      {/* <Icon src={closeIcon} height="16px" margin="0" onClick={onClose} /> */}
+      <Icon
+        src="assets/icons/x-Icon.png"
+        height="16px"
+        margin="0"
+        onClick={onClose}
+      />
     </Container>
   );
 }
