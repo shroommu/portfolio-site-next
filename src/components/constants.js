@@ -5,6 +5,10 @@ export const colors = {
   lightBlue: "#a0c1da",
   lightestBlue: "#d0e0ed",
 
+  treeTextureDarkest: "#052845",
+  treeTextureMiddle: "#003e6f",
+  treeTextureLightest: "#0f4f82",
+
   closestTree: "#00335c",
   middleTree: "#004e8b",
   furthestTree: "#1263a3",

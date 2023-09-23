@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { device } from "../../constants";
 import { colors } from "../constants";
 
-import { Tree1, Tree2, Tree3 } from "../../../public/assets";
+import { Tree1, Tree2, Tree3, TexturedTree1 } from "../../../public/assets";
 import fox from "../../../public/assets/svg/fox.svg";
 
 const BackgroundContainer = styled.div`
@@ -17,7 +17,7 @@ const BackgroundContainer = styled.div`
   justify-content: space-between;
   position: absolute;
   overflow-x: clip;
-  pointer-events: none;
+  //pointer-events: none;
   z-index: 2;
 
   @media ${device.tablet} {
@@ -128,6 +128,7 @@ export default function Background() {
         <TreesLeftContainer testId="trees-left-container">
           <Tree2
             fillColor={colors.closestTree}
+            strokeColor={colors.treeTextureDarkest}
             zIndex={23}
             preserveAspectRatio="none"
             rightPos="60%"
@@ -153,8 +154,9 @@ export default function Background() {
             offsetX={foxOffset[0]}
             offsetY={foxOffset[1]}
           />
-          <Tree1
+          <TexturedTree1
             fillColor={colors.furthestTree}
+            strokeColor={colors.treeTextureLightest}
             zIndex={21}
             height="90%"
             maxWidth="65%"
@@ -176,8 +178,9 @@ export default function Background() {
             preserveAspectRatio="none"
             testId="tree-closest-right"
           />
-          <Tree1
+          <TexturedTree1
             fillColor={colors.middleTree}
+            strokeColor={colors.treeTextureMiddle}
             zIndex={22}
             flipX={true}
             height="95%"

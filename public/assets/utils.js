@@ -2,6 +2,7 @@ import { css } from "styled-components";
 
 export const treeStyles = ({
   fillColor,
+  strokeColor,
   zIndex,
   position,
   rightPos,
@@ -24,8 +25,19 @@ export const treeStyles = ({
 
     ${flipX && "transform: scaleX(-1)"};
 
+    & g {
+      fill: none;
+      fill-opacity: 1;
+    }
+
     & path {
+      stroke: ${strokeColor};
+      fill: none;
+    }
+
+    & path:first-child {
       fill: ${fillColor};
+      stroke: none;
     }
   `;
 };
