@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import styled from "styled-components";
 import { colors } from "../constants";
-import { Icon } from "../../../public/assets/index.js";
+import { Icon as UnstyledIcon } from "../../../public/assets/index.js";
 import { MdMenu, MdClose } from "react-icons/md";
 
 import Button, { themes } from "../Button";
@@ -94,6 +94,12 @@ const Leaves = styled.div`
   }
 `;
 
+const SocialIcon = styled(UnstyledIcon)`
+  &:hover {
+    transform: translate(0, -5px) rotate(2deg);
+  }
+`;
+
 export default function Header({ location }) {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -120,7 +126,7 @@ export default function Header({ location }) {
             </Button>
           </Link>
           <ExternalLink href="http://instagram.com/shroommu">
-            <Icon
+            <SocialIcon
               src="/assets/icons/icons8-instagram-64.png"
               height="48px"
               margin="0 8px 0 0"
@@ -128,7 +134,7 @@ export default function Header({ location }) {
             />
           </ExternalLink>
           <ExternalLink href="http://github.com/shroommu">
-            <Icon
+            <SocialIcon
               src="/assets/icons/icons8-github-64.png"
               height="48px"
               margin="0 8px 0 0"
@@ -136,7 +142,7 @@ export default function Header({ location }) {
             />
           </ExternalLink>
           <ExternalLink href="http://linkedin.com/in/alexa-kruckenberg">
-            <Icon
+            <SocialIcon
               src="/assets/icons/icons8-linkedin-64.png"
               height="48px"
               margin="0"

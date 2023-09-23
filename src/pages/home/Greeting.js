@@ -107,8 +107,8 @@ export default function Greeting() {
             <Paragraph>
               I&apos;m a curious person who loves to create and learn.
               You&apos;ll find me anywhere that code and art interact, plus a
-              few other places besides. Keep scrolling to see what I&apos;m
-              working on!
+              few other places besides. Have a look around to see what I&apos;ve
+              been working on!
             </Paragraph>
             <Paragraph>
               I&apos;m local to the Seattle area, where I live with one person

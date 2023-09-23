@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { colors, footerHeight } from "../constants";
 import { device } from "../../constants";
