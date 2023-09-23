@@ -20,7 +20,7 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  margin: -50px -50px 0 0;
+  margin: -50px -50px -15px 0;
   padding: 50px 50px 0 0;
   height: 100%;
 

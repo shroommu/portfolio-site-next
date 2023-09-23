@@ -1,0 +1,39 @@
+---
+title: "Building My Site, Part 3"
+date: "09-22-2023"
+excerpt: "How to NOT rage quit while converting a CRA app to a NextJS app!"
+image: "/assets/images/posts/9-22-2023/next-js-logo-large.png"
+tags: ["mdx", "next", "vercel"]
+---
+
+Has Facebook/Meta ever steered *you* wrong? Because I've been there, and I've been there recently!
+
+I started building this website as part of my Meta Frontend Developer Certification (which, by the way, I just finished this week!), and when they went over how to bootstrap your site, they used the now-deprecated `create-react-app`. Now, to grant them a little grace, CRA hasn't been dead for *too* long, but being the *official* Meta course for React, you'd hope they'd keep up with things like that. Oh well.
+
+At first I was pretty determined to just use what I started with, but after a few additions of increasingly frustrating packages and hacks to make my site work the way I wanted it to, I decided it was time to upgrade to a newer React Framework.
+
+<Image src="/assets/images/posts/9-22-2023/next-js-logo-large.png" />
+
+Enter NextJS.
+
+Honestly, I should have just started with Next, but I didn't know enough about it to know why it was worth using. Now I get it. Next has so many neat features built in that make working with React so much nicer, including some incredible streamlining of routing for this blog in particular!
+
+The hardest part of switching, aside from the usual aches and pains of converting components from one set of packages to another, was deployment. Because I'm using some of the more "advanced" features in Next, like [ISR](https://nextjs.org/docs/pages/building-your-application/rendering/incremental-static-regeneration), my site is no longer truly static, which made it virtually impossible to host with my current web hosting service. But I'm not going to miss them, honestly.
+
+You're probably reading this while I'm using my temporary Vercel domain, and aside from one hiccup, I could not have been happier with switching over to them for hosting and deploying my site. As soon as I can move my regular domain over from Bluehost, I intend to do just that, because the Git integration and Next compatability in Vercel is something I now can't live without.
+
+The aforementioned hiccup was something I encountered when trying to serve my blog posts - locally, I was able to reference the filepath to these posts just with this:
+
+```
+const postFile = fs.readFileSync(`_posts/${slug}.mdx`);
+```
+
+But that didn't work in Vercel's environment. After some hair pulling and head banging, I decided to head over to the NextJS Discord server, where someone was immediately able to help me fix the issue:
+
+```
+const postFile = fs.readFileSync(process.cwd() + `/_posts/${slug}.mdx`);
+```
+
+And just like that, I was freed from CRA jank.
+
+Thanks for reading!
