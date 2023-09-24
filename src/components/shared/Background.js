@@ -4,7 +4,14 @@ import styled from "styled-components";
 import { device } from "../../constants";
 import { colors } from "../constants";
 
-import { Tree1, Tree2, Tree3, TexturedTree1 } from "../../../public/assets";
+import {
+  Tree1,
+  Tree2,
+  Tree3,
+  TexturedTree1,
+  TexturedTree2,
+  TexturedTree3,
+} from "../../../public/assets";
 import fox from "../../../public/assets/svg/fox.svg";
 
 const BackgroundContainer = styled.div`
@@ -126,7 +133,7 @@ export default function Background() {
       </GroundContainer>
       <>
         <TreesLeftContainer testId="trees-left-container">
-          <Tree2
+          <TexturedTree2
             fillColor={colors.closestTree}
             strokeColor={colors.treeTextureDarkest}
             zIndex={23}
@@ -138,8 +145,9 @@ export default function Background() {
             testId="closest-tree-left"
           />
           <FoxTreeContainer ref={foxTreeRef}>
-            <Tree3
+            <TexturedTree3
               fillColor={colors.middleTree}
+              strokeColor={colors.treeTextureMiddle}
               zIndex={22}
               height="100%"
               maxWidth="100%"
@@ -169,6 +177,7 @@ export default function Background() {
         <TreesRightContainer testId="trees-right-container">
           <Tree3
             fillColor={colors.closestTree}
+            strokeColor={colors.treeTextureDarkest}
             zIndex={23}
             flipX={true}
             bottomPos="0%"
@@ -178,7 +187,7 @@ export default function Background() {
             preserveAspectRatio="none"
             testId="tree-closest-right"
           />
-          <TexturedTree1
+          <Tree1
             fillColor={colors.middleTree}
             strokeColor={colors.treeTextureMiddle}
             zIndex={22}
@@ -192,6 +201,7 @@ export default function Background() {
           />
           <Tree2
             fillColor={colors.furthestTree}
+            strokeColor={colors.treeTextureLightest}
             zIndex={21}
             flipX={true}
             height="90%"
