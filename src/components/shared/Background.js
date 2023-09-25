@@ -102,6 +102,17 @@ const TreesRightContainer = styled.div`
   }
 `;
 
+const TreesCenterContainer = styled.div`
+  width: 40%;
+  height: 100%;
+  right: 45%;
+  position: absolute;
+
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
 const FoxTreeContainer = styled.div`
   position: absolute;
   height: 100%;
@@ -165,8 +176,18 @@ export default function Background() {
             fillColor={colors.treeTealMiddle}
             zIndex={12}
             preserveAspectRatio="none"
-            rightPos="35%"
-            bottomPos="22.5%"
+            rightPos="25%"
+            bottomPos="20%"
+            height="72.5%"
+            maxWidth="35%"
+            testId="middle-tree-middle"
+          />
+          <Tree2
+            fillColor={colors.treeTealMiddle}
+            zIndex={12}
+            preserveAspectRatio="none"
+            rightPos="40%"
+            bottomPos="22.55%"
             height="72.5%"
             maxWidth="35%"
             testId="middle-tree-middle"
@@ -179,7 +200,39 @@ export default function Background() {
             bottomPos="25%"
             height="75%"
             maxWidth="35%"
-            testId="closest-tree-middle"
+            testId="furthest-tree-middle"
+          />
+        </TreesLeftContainer>
+        <TreesLeftContainer id="bg-trees-container">
+          <Tree4
+            fillColor="#a2b99e"
+            zIndex={7}
+            preserveAspectRatio="none"
+            rightPos="30%"
+            bottomPos="25%"
+            height="72.5%"
+            maxWidth="35%"
+            testId="bg-tree-left"
+          />
+          <Tree4
+            fillColor="#7d9779"
+            zIndex={8}
+            preserveAspectRatio="none"
+            rightPos="62.5%"
+            bottomPos="22.5%"
+            height="75%"
+            maxWidth="35%"
+            testId="bg-tree-middle"
+          />
+          <Tree1
+            fillColor="#aec2aa"
+            zIndex={6}
+            preserveAspectRatio="none"
+            rightPos="7.5%"
+            bottomPos="25%"
+            height="75%"
+            maxWidth="35%"
+            testId="bg-tree-right"
           />
         </TreesLeftContainer>
         <TreesLeftContainer id="closest-trees-left-container">
@@ -224,7 +277,7 @@ export default function Background() {
             testId="furthest-tree-left"
           />
         </TreesLeftContainer>
-        <TreesRightContainer testId="trees-right-container">
+        <TreesRightContainer testId="trees-right-container-fg">
           <TexturedTree3
             fillColor={colors.closestTree}
             strokeColor={colors.treeTextureDarkest}
@@ -262,7 +315,7 @@ export default function Background() {
             testId="tree-furthest-right"
           />
         </TreesRightContainer>
-        <TreesRightContainer testId="middle-trees-right-container">
+        <TreesRightContainer testId="trees-right-container-mg">
           <Tree2
             fillColor={colors.treeTealDark}
             zIndex={13}
@@ -292,6 +345,39 @@ export default function Background() {
             maxWidth="50%"
             bottomPos="25%"
             rightPos="60%"
+            preserveAspectRatio="none"
+            testId="middle-tree-furthest-right"
+          />
+        </TreesRightContainer>
+        <TreesRightContainer testId="trees-right-container-mg">
+          <Tree1
+            fillColor="#7d9779"
+            zIndex={8}
+            flipX={true}
+            bottomPos="30%"
+            rightPos="-15%"
+            height="80%"
+            maxWidth="50%"
+            preserveAspectRatio="none"
+            testId="middle-tree-closest-right"
+          />
+          <Tree3
+            fillColor="#a2b99e"
+            zIndex={7}
+            height="75%"
+            maxWidth="50%"
+            bottomPos="25%"
+            rightPos="15%"
+            preserveAspectRatio="none"
+            testId="middle-tree-middle-right"
+          />
+          <Tree5
+            fillColor="#aec2aa"
+            zIndex={6}
+            height="80%"
+            maxWidth="50%"
+            bottomPos="27.5%"
+            rightPos="45%"
             preserveAspectRatio="none"
             testId="middle-tree-furthest-right"
           />

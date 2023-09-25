@@ -43,7 +43,7 @@ export default function Card({
 }
 
 Card.defaultProps = {
-  background: "rgba(255, 255, 255, .95)",
+  background: colors.white,
   borderRadius: "30px",
   zIndex: 30,
   padding: "36px",
