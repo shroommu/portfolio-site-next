@@ -3,7 +3,21 @@ module.exports = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  cleanupIds: false,
+                  collapseGroups: false,
+                },
+              ],
+            },
+          },
+        },
+      ],
     });
 
     return config;

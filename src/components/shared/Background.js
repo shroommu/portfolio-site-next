@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 
 import { device } from "../../constants";
 import { colors } from "../constants";
@@ -175,7 +176,7 @@ export default function Background() {
           />
         </TreesLeftContainer>
         <TreesRightContainer testId="trees-right-container">
-          <Tree3
+          <TexturedTree3
             fillColor={colors.closestTree}
             strokeColor={colors.treeTextureDarkest}
             zIndex={23}
@@ -187,7 +188,7 @@ export default function Background() {
             preserveAspectRatio="none"
             testId="tree-closest-right"
           />
-          <Tree1
+          <TexturedTree1
             fillColor={colors.middleTree}
             strokeColor={colors.treeTextureMiddle}
             zIndex={22}
@@ -199,7 +200,7 @@ export default function Background() {
             preserveAspectRatio="none"
             testId="tree-middle-right"
           />
-          <Tree2
+          <TexturedTree2
             fillColor={colors.furthestTree}
             strokeColor={colors.treeTextureLightest}
             zIndex={21}

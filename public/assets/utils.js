@@ -16,7 +16,6 @@ export const treeStyles = ({
     height: ${height};
     max-width: ${maxWidth};
     position: ${position || "absolute"};
-    //flex: 1;
     z-index: ${zIndex};
     overflow: clip;
 

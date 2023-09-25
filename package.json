@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@svgr/webpack": "^8.1.0",
+    "@svgr/webpack": "^5.5.0",
     "autoprefixer": "^10.4.16",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.2",
@@ -20,8 +20,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "serve": "^14.2.1",
     "sharp": "^0.32.6",
-    "styled-components": "^5.3.11"
+    "styled-components": "^5.3.11",
+    "svgo": "^3.0.2",
+    "svgo-loader": "^4.0.0"
   },
   "devDependencies": {
     "babel-plugin-inline-react-svg": "^2.0.2",
