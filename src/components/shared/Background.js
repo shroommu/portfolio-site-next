@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import Image from "next/image";
 
 import { device } from "../../constants";
 import { colors } from "../constants";
@@ -9,6 +8,8 @@ import {
   Tree1,
   Tree2,
   Tree3,
+  Tree4,
+  Tree5,
   TexturedTree1,
   TexturedTree2,
   TexturedTree3,
@@ -72,11 +73,16 @@ const SkyFill = styled.div`
   );
 `;
 
+const TreesContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 const TreesLeftContainer = styled.div`
   display: flex;
   width: 45%;
   height: 100%;
-  position: relative;
+  position: absolute;
 
   @media ${device.tablet} {
     display: none;
@@ -88,7 +94,8 @@ const TreesRightContainer = styled.div`
   flex-direction: row-reverse;
   width: 30%;
   height: 100%;
-  position: relative;
+  right: 0;
+  position: absolute;
 
   @media ${device.tablet} {
     display: none;
@@ -132,8 +139,50 @@ export default function Background() {
         <GroundEllipse testId="ground-elipse" />
         <SkyFill testId="sky-rectangle-fill" />
       </GroundContainer>
-      <>
-        <TreesLeftContainer testId="trees-left-container">
+      <TreesContainer>
+        <TreesLeftContainer id="middle-tree-left-container">
+          <Tree1
+            fillColor={colors.treeTealDarkest}
+            zIndex={13}
+            preserveAspectRatio="none"
+            rightPos="80%"
+            bottomPos="17.5%"
+            height="75%"
+            maxWidth="35%"
+            testId="middle-tree-edge"
+          />
+          <Tree4
+            fillColor={colors.treeTealDark}
+            zIndex={13}
+            preserveAspectRatio="none"
+            rightPos="55%"
+            bottomPos="20%"
+            height="75%"
+            maxWidth="35%"
+            testId="middle-tree-left"
+          />
+          <Tree5
+            fillColor={colors.treeTealMiddle}
+            zIndex={12}
+            preserveAspectRatio="none"
+            rightPos="35%"
+            bottomPos="22.5%"
+            height="72.5%"
+            maxWidth="35%"
+            testId="middle-tree-middle"
+          />
+          <Tree3
+            fillColor={colors.treeTealLightest}
+            zIndex={11}
+            preserveAspectRatio="none"
+            rightPos="0%"
+            bottomPos="25%"
+            height="75%"
+            maxWidth="35%"
+            testId="closest-tree-middle"
+          />
+        </TreesLeftContainer>
+        <TreesLeftContainer id="closest-trees-left-container">
           <TexturedTree2
             fillColor={colors.closestTree}
             strokeColor={colors.treeTextureDarkest}
@@ -213,7 +262,41 @@ export default function Background() {
             testId="tree-furthest-right"
           />
         </TreesRightContainer>
-      </>
+        <TreesRightContainer testId="middle-trees-right-container">
+          <Tree2
+            fillColor={colors.treeTealDark}
+            zIndex={13}
+            flipX={true}
+            bottomPos="20%"
+            rightPos="-20%"
+            height="80%"
+            maxWidth="50%"
+            preserveAspectRatio="none"
+            testId="middle-tree-closest-right"
+          />
+          <Tree5
+            fillColor={colors.treeTealMiddle}
+            zIndex={12}
+            height="75%"
+            maxWidth="50%"
+            bottomPos="22.5%"
+            rightPos="20%"
+            preserveAspectRatio="none"
+            testId="middle-tree-middle-right"
+          />
+          <Tree4
+            fillColor={colors.treeTealLightest}
+            zIndex={11}
+            flipX={true}
+            height="80%"
+            maxWidth="50%"
+            bottomPos="25%"
+            rightPos="60%"
+            preserveAspectRatio="none"
+            testId="middle-tree-furthest-right"
+          />
+        </TreesRightContainer>
+      </TreesContainer>
     </BackgroundContainer>
   );
 }

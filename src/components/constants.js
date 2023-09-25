@@ -13,6 +13,11 @@ export const colors = {
   middleTree: "#004e8b",
   furthestTree: "#1263a3",
 
+  treeTealDarkest: "#3b5f60",
+  treeTealDark: "#207784",
+  treeTealMiddle: "#509da9",
+  treeTealLightest: "#7cb5be",
+
   white: "#ffffff",
   orange: "#de752d",
   darkerOrange: "#c86929",

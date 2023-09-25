@@ -3,6 +3,8 @@ import styled from "styled-components";
 import tree1 from "./svg/tree1.svg";
 import tree2 from "./svg/tree2.svg";
 import tree3 from "./svg/tree3.svg";
+import tree4 from "./svg/tree4.svg";
+import tree5 from "./svg/tree5.svg";
 import texturedTree1 from "./svg/texturedTree1.svg";
 import texturedTree2 from "./svg/texturedTree2.svg";
 import texturedTree3 from "./svg/texturedTree3.svg";
@@ -16,6 +18,12 @@ export const Tree2 = styled(tree2)`
   ${(props) => treeStyles(props)}
 `;
 export const Tree3 = styled(tree3)`
+  ${(props) => treeStyles(props)}
+`;
+export const Tree4 = styled(tree4)`
+  ${(props) => treeStyles(props)}
+`;
+export const Tree5 = styled(tree5)`
   ${(props) => treeStyles(props)}
 `;
 export const TexturedTree1 = styled(texturedTree1)`
