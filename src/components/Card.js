@@ -4,7 +4,6 @@ import { colors } from "./constants";
 import { device } from "../constants";
 
 const Container = styled.div`
-  opacity: 95%;
   display: flex;
   justify-content: center;
   flex: 1;
@@ -44,7 +43,7 @@ export default function Card({
 }
 
 Card.defaultProps = {
-  background: colors.white,
+  background: "rgba(255, 255, 255, .95)",
   borderRadius: "30px",
   zIndex: 30,
   padding: "36px",

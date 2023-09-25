@@ -268,7 +268,7 @@ export default function Background() {
             zIndex={13}
             flipX={true}
             bottomPos="20%"
-            rightPos="-20%"
+            rightPos="-10%"
             height="80%"
             maxWidth="50%"
             preserveAspectRatio="none"

@@ -18,6 +18,7 @@ const Card = styled(UnstyledCard)`
   }
 
   @media ${device.laptop} {
+    width: -webkit-fill-available;
     max-width: 100%;
   }
 `;
@@ -74,7 +75,6 @@ const TagContainer = styled.div`
   flex-wrap: wrap;
 
   @media ${device.tablet} {
-    //flex-direction: column;
     justify-content: center;
     align-items: center;
   }
