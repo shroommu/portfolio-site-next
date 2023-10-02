@@ -12,6 +12,7 @@ const Card = styled(UnstyledCard)`
   margin: 0 0 12px 0;
   padding: 24px;
   max-width: 25%;
+  flex-basis: 33%;
 
   &:hover {
     transform: translate(0, -10px) rotate(2deg);
