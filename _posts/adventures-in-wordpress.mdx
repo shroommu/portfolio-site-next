@@ -1,0 +1,78 @@
+---
+title: "Adventures in WordPress"
+date: "10-1-2023"
+excerpt: "I talk about my experience with integrating WordPress into a NextJS project"
+image: "/assets/images/posts/10-01-2023/wordPressStockImage.jpg"
+tags: ["next", "wordpress", "cms"]
+---
+
+I started building a site for a client about 2 weeks ago, which is an exciting development for multiple reasons - but most of all, it's granted me an opportunity to learn a bunch of new things, which is one of my favorite activities! However, no learning experience is complete without its share of bumps in the road, and integrating WordPress for content management on this site was no exception.
+
+There are no end to the developer blogs out there talking about how to integrate WordPress as a headless CMS, but I was surprised at how many of their methods simply did not work for me! I don't know if WordPress has been updated significantly since the creation of those posts, but I wanted to document what ended up working for me in order to help someone out down the road.
+
+First, can we talk about how confusing it is that there are so many WordPress products that all use the same name? WordPress.com and Wordpress.org are hugely different, and that's just silly to me. Maybe a WordPress expert out there can explain the nuances to me, but this was the first roadblock I encountered. Check which product you're using so you know which API documentation to read!
+
+In my case, I was using WordPress.com, so while I was initially directed to the `/wp-json/wp/v2/` API route via one of the aforementioned blog posts, this API did not work for me. Maybe that's the API route for WordPress.org, I don't know. What I actually needed to use was documented [here](https://developer.wordpress.com/docs/api/getting-started/).
+
+I borrowed some code snippets from [Esteban Munch Jones](https://academind.com/tutorials/nextjs-wordpress-headless-cms) to fetch all the posts on my WordPress test site, plus a function to pick out a post by its slug:
+
+```
+const BASE_URL =
+  "https://public-api.wordpress.com/rest/v1.1/sites/${URL_OF_YOURR_WORDPRESS_SITE}";
+
+export async function getPosts() {
+  const postsRes = await fetch(BASE_URL + "/posts");
+  const posts = await postsRes.json();
+  return posts;
+}
+
+export async function getPostBySlug(slug) {
+  const allPosts = await getPosts();
+  return allPosts.posts.filter((post) => post.slug === slug)[0] || null;
+}
+```
+
+That plus a simple `getStaticProps()` function in the Next components:
+
+```
+export async function getStaticProps() {
+  const aboutPageContent = await getPostBySlug("about");
+
+  return {
+    props: {
+      aboutPageContent,
+    },
+    revalidate: 60,
+  };
+}
+```
+
+I added styling with `styled-components` like so:
+
+```
+const WordpressPostContent = styled.div`
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+  p {
+    color: white;
+    text-align: justify;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+`;
+
+```
+
+And finally, I used `dangerouslySetInnerHTML` as a prop of that div to inject the results of my `/posts` fetch request, and voila! WordPress in Next accomplished.
+
+All told, the integration was pretty simple once I figured out which API documentation to read! If I hadn't already been sold on MDX for my own site, I might consider switching to WordPress.
+
+Hope this helps someone, and thanks for reading!
