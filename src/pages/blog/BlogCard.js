@@ -21,6 +21,7 @@ const Card = styled(UnstyledCard)`
   @media ${device.laptop} {
     width: -webkit-fill-available;
     max-width: 100%;
+    flex-basis: unset;
   }
 `;
 

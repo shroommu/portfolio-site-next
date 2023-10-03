@@ -62,7 +62,7 @@ export const BackgroundGrass = styled.div`
 export const Heading = styled.h1`
   font-family: Delicious Handrawn;
   color: ${colors.darkestBlue};
-  margin: 0 0 12px 0;
+  margin: 0 0 24px 0;
   font-size: 42px;
 `;
 
