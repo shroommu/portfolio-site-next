@@ -10,12 +10,14 @@ import {
   BackgroundGrass,
   Filler,
 } from "../components/shared/index.js";
+import FallingLeaves from "@/components/shared/FallingLeaves";
 
 export default function App({ Component, pageProps }) {
   return (
     <PageContainer>
       <Header />
       <Background />
+      <FallingLeaves />
       <ScrollToTop>
         <ContentContainer id="content-container">
           <Component {...pageProps} />
