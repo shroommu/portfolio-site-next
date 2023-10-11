@@ -30,21 +30,10 @@ const options = {
       speed: 10,
     },
     number: {
-      value: 40,
-      density: {
-        enable: true,
-      },
+      value: 20,
     },
     opacity: {
       value: 1,
-      animation: {
-        enable: true,
-        maximumValue: 1,
-        minimumValue: 0.1,
-        sync: false,
-        startValue: "max",
-        destroy: "min",
-      },
     },
     rotate: {
       animation: {
