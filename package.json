@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@vercel/postgres": "^0.7.2",
     "autoprefixer": "^10.4.16",
     "csv-loader": "^3.0.5",
     "eslint": "8.49.0",
