@@ -111,7 +111,7 @@ export default function Greeting() {
               been working on!
             </Paragraph>
             <Paragraph>
-              I&apos;m local to the Seattle area, where I live with one person
+              I&apos;m located in the Seattle area, where I live with one person
               and two cats. When I&apos;m not coding, writing, or otherwise
               creating, I like to play video games (especially Pokemon Go) and
               try new restaurants.
