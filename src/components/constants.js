@@ -19,6 +19,8 @@ export const colors = {
   treeTealLightest: "#7cb5be",
 
   white: "#ffffff",
+  offWhiteHover: "#f2f2f2",
+  offWhiteClick: "#e0e0e0",
   orange: "#de752d",
   darkerOrange: "#c86929",
   darkestOrange: "#b25e24",

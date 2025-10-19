@@ -9,13 +9,16 @@ import { device } from "../../constants";
 const Card = styled(UnstyledCard)`
   border: 2px solid ${colors.lightestBlue};
   box-shadow: 10px 10px 5px -2px ${colors.lightBlue};
-  margin: 0 0 12px 0;
-  padding: 24px;
-  max-width: 25%;
+  margin: 0 0 24px 0;
+  max-width: 33%;
   flex-basis: 50%;
 
   &:hover {
-    transform: translate(0, -10px) rotate(2deg);
+    background: ${colors.offWhiteHover};
+  }
+
+  &:active {
+    background: ${colors.offWhiteClick};
   }
 
   @media ${device.laptop} {
@@ -26,11 +29,13 @@ const Card = styled(UnstyledCard)`
 `;
 
 const Container = styled.div`
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
   height: 100%;
+  padding: 36px;
 `;
 
 const ImageContainer = styled.div`
@@ -83,11 +88,8 @@ const TagContainer = styled.div`
 `;
 
 const Tag = styled.div`
-  margin: 0 0 12px 12px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background-color: ${colors.orange};
-  color: ${colors.white};
+  color: ${colors.orange};
+  margin: 0 8px 4px 0;
   width: fit-content;
   font-size: 12px;
 `;
@@ -99,7 +101,7 @@ const ReadMoreLink = styled.div`
 
 export default function ProjectCard({ postPreview }) {
   return (
-    <Card>
+    <Card padding={"0px"} mobilePadding={"0px"}>
       <Link href={`/projects/${postPreview?.slug}`}>
         <Container>
           <ImageContainer>
@@ -117,7 +119,7 @@ export default function ProjectCard({ postPreview }) {
             <Excerpt>{postPreview?.excerpt}</Excerpt>
             <TagContainer>
               {postPreview?.tags.map((tag) => {
-                return <Tag key={tag}>{tag}</Tag>;
+                return <Tag key={tag}>{`#${tag}`}</Tag>;
               })}
             </TagContainer>
             <ReadMoreLink>Read More →</ReadMoreLink>
