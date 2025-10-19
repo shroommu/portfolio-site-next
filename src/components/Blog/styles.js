@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import UnstyledImage from "next/image";
-
 import { colors } from "../constants";
 
 export const Header1 = styled.h1`
@@ -48,6 +46,6 @@ export const Code = styled.code`
 `;
 
 export const Link = styled.a`
-  color: ${colors.darkBlue};
+  color: ${colors.orange};
   text-decoration: underline;
 `;

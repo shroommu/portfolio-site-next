@@ -50,7 +50,7 @@ export default function Footer() {
         <Link href={locations.INDEX}>
           <WebsiteName>Alexa Kruckenberg</WebsiteName>
         </Link>
-        <CopyrightContainer>Copyright 2023</CopyrightContainer>
+        <CopyrightContainer>Copyright 2025</CopyrightContainer>
       </ContentContainer>
     </Container>
   );

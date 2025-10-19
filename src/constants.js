@@ -16,7 +16,7 @@ export const locations = {
   INDEX: "/",
   ART: "/art/",
   BLOG: "/blog/",
-  CODE: "/code/",
+  PROJECTS: "/projects/",
   CONTACT: "/contact/",
 };
 
@@ -24,6 +24,6 @@ export const locationsWithLabels = {
   INDEX: { path: locations.INDEX, label: "Home" },
   ART: { path: locations.ART, label: "Art" },
   BLOG: { path: locations.BLOG, label: "Blog" },
-  CODE: { path: locations.CODE, label: "Code" },
+  PROJECTS: { path: locations.PROJECTS, label: "Projects" },
   CONTACT: { path: locations.CONTACT, label: "Contact" },
 };

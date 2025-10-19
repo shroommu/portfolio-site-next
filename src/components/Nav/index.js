@@ -43,19 +43,19 @@ export default function Nav({ location }) {
           Art
         </Button>
       </Link> */}
-      {/* <Link href={locations.CODE}>
+      <Link href={locations.PROJECTS}>
         <Button
           margin="0 8px 0 0"
           fontSize="24px"
-          theme={
-            location.pathname === locations.CODE
-              ? themes.secondary
-              : themes.default
-          }
+          // theme={
+          //   location.pathname === locations.PROJECTS
+          //     ? themes.secondary
+          //     : themes.default
+          // }
         >
-          Code
+          Projects
         </Button>
-      </Link> */}
+      </Link>
       <Link href={locations.BLOG}>
         <Button
           margin="0 8px 0 0"

@@ -48,6 +48,7 @@ const NavItem = styled.li`
 
 const navItems = [
   locationsWithLabels.INDEX,
+  locationsWithLabels.PROJECTS,
   locationsWithLabels.BLOG,
   locationsWithLabels.CONTACT,
 ];
