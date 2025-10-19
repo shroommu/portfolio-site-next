@@ -17,7 +17,6 @@ export default function App({ Component, pageProps }) {
     <PageContainer>
       <Header />
       <Background />
-      <FallingLeaves />
       <ScrollToTop>
         <ContentContainer id="content-container">
           <Component {...pageProps} />
