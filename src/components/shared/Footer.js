@@ -48,7 +48,7 @@ export default function Footer() {
     <Container test-id="footer-container">
       <ContentContainer>
         <Link href={locations.INDEX}>
-          <WebsiteName>Alexa Kruckenberg</WebsiteName>
+          <WebsiteName>Alex Kruckenberg</WebsiteName>
         </Link>
         <CopyrightContainer>Copyright 2025</CopyrightContainer>
       </ContentContainer>

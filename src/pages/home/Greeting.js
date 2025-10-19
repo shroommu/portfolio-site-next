@@ -100,7 +100,7 @@ export default function Greeting() {
             />
           </ProfilePictureContainer>
           <TextContainer test-id="greeting-text-container">
-            <Heading test-id="greeting-header">Hi, I&apos;m Alexa!</Heading>
+            <Heading test-id="greeting-header">Hi, I&apos;m Alex!</Heading>
             <SubHeading test-id="greeting-subheader">
               Software Developer, Artist, Pokemon Enthusiast
             </SubHeading>

@@ -116,7 +116,7 @@ export default function Header({ location }) {
           <MenuIcon onClick={toggleShowMenu} />
         )}
         <Link href={locations.INDEX}>
-          <WebsiteName>Alexa Kruckenberg</WebsiteName>
+          <WebsiteName>Alex Kruckenberg</WebsiteName>
         </Link>
         <Nav location={location} />
         <SocialsContainer>
@@ -141,7 +141,7 @@ export default function Header({ location }) {
               alt="github icon"
             />
           </ExternalLink>
-          <ExternalLink href="http://linkedin.com/in/alexa-kruckenberg">
+          <ExternalLink href="http://linkedin.com/in/alex-kruckenberg">
             <SocialIcon
               src="/assets/icons/icons8-linkedin-64.png"
               height="48px"
