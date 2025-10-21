@@ -8,9 +8,18 @@ tags: ["graphql", "prisma", "api", "tailwind", "postgres"]
 
 [Check out the PokeDex here!](https://pokemon.alexakruckenberg.com/pokedex)
 
-After building my portfolio website, where I was primarily focused on showcasing my existing skillset, I wanted to take on a new project that would expand my horizons a little. At my former employer, I had dabbled a little in the database side of things, but hadn't really sunk my teeth into it, so that seemed like the natural first place to start growing as a developer.
+After building my portfolio website, where I was primarily focused on showcasing my existing skillset, I wanted to take on a new project that would expand my horizons a little. At my former employer, I had dabbled a little in the database side of things, but hadn't really sunk my teeth into it, so that seemed like the natural first place to continue growing as a developer.
+
+##Building the Database
 
 I wanted a database project that would be small enough in scope that I wouldn't be overwhelmed by the quantity of data, but with a deep enough dataset that I could learn everything I wanted to learn. The first generation of Pokemon has 151 unique creatures, which felt like a nice bite-sized number of database entries to start with.
 
 I initially built my database using Salesforce, but my Pokemon data didn't fit on the free Salesforce storage plan, so I migrated to Supabase which has a far more generous free tier.
 
+I built the following schema:
+
+<Image src={"/assets/images/projects/PokeDex/supabase_pokemon_schema.png"} />
+
+Then I scraped a Pokemon fansite for the data using some Python scripts. Finally, I used some Prisma scripts to populate my database.
+
+##Building the Frontend
