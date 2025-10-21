@@ -17,15 +17,12 @@ div, p, input, textarea, label {
     font-family: Bitter;
 }
 
-p, input, textarea, label {
-    font-size: 14px;
-    line-height: 20px;
-}
-
 button, p, a {
     all: unset;
 }
 
 p {
     display: block;
+    font-size: 14px;
+    line-height: 20px;
 }
