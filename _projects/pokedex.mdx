@@ -10,11 +10,15 @@ tags: ["graphql", "prisma", "api", "tailwind", "postgres"]
 
 After building my portfolio website, where I was primarily focused on showcasing my existing skillset, I wanted to take on a new project that would expand my horizons a little. At my former employer, I had dabbled a little in the database side of things, but hadn't really sunk my teeth into it, so that seemed like the natural first place to continue growing as a developer.
 
-##Building the Database
+## About Pokemon
+
+In the first generation of Pokemon games, a Pokemon had a few basic pieces of data: its Pokedex entry (name, number, and a blurb of "wildlife" information), its type(s), its stats, and its moveset.
+
+## Building the Database
 
 I wanted a database project that would be small enough in scope that I wouldn't be overwhelmed by the quantity of data, but with a deep enough dataset that I could learn everything I wanted to learn. The first generation of Pokemon has 151 unique creatures, which felt like a nice bite-sized number of database entries to start with.
 
-I initially built my database using Salesforce, but my Pokemon data didn't fit on the free Salesforce storage plan, so I migrated to Supabase which has a far more generous free tier.
+I initially built my database using Salesforce, but my Pokemon data didn't fit on the free Salesforce storage plan, so I migrated to Supabase which has a far more generous free tier. I also found it just a little easier to understand than Salesforce, which was appreciated as someone fairly new to database administration.
 
 I built the following schema:
 
@@ -22,4 +26,16 @@ I built the following schema:
 
 Then I scraped a Pokemon fansite for the data using some Python scripts. Finally, I used some Prisma scripts to populate my database.
 
-##Building the Frontend
+## Building the Frontend
+
+With my database prepared, I started putting together the framework for the clinest-side website.
+
+In addition to learning database administration, I wanted to expand my horizons in the frontend area, and I decided to do that by learning TailwindCSS. I previously have written all my CSS using the `styled-components` library, but I'd heard a lot of good things about Tailwind. Truthfully, I didn't like working in it at first! It's a very different approach to CSS as opposed to what I was used to. After about 10 hours of working in it, though, it started to click, and I've since become a big fan! I can see use cases for both Tailwind and `styled-components`, but I think I'll be using Tailwind for all my future personal projects.
+
+I used NextJS as the framework for this site. Having recently built my portfolio site, I was pretty well-versed in most of the basics of Next, but I faced some new challenges as I learned how to serve content from my database using a serverless framework. In general, my Pokedex is fairly responsive, but I've found that my pages load slowly if they aren't pre-fetched. And even using Next's in-built pre-fetching feature, I'm still somewhat dissatisfied with the load times. It's something I plan to continue improving.
+
+My favorite feature on the site is only available on the desktop web version, and that's the little animation of the Pokemon icon on the left side of the screen when hovering over it. It was challenging to find the right way to implement that using Tailwind, but I'm very pleased with how it came out.
+
+## Conclusion
+
+I learned a lot from building this project, and I now feel more confident in my database administration skills. I have plans to add user administration to the site so users can build and save teams of Pokemon, which is another fairly sizeable challenge, but I'm always up to learn something new!
