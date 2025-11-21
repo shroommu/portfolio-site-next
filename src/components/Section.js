@@ -7,7 +7,7 @@ const Container = styled.section`
   margin: ${(p) => p.margin};
 
   @media ${device.tablet} {
-    padding: 5% 10%;
+    padding: 5%;
   }
 `;
 
