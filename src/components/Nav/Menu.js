@@ -9,17 +9,19 @@ const Container = styled.div`
   flex-direction: column;
   background: ${colors.white};
   position: absolute;
+  top: ${p => p.show ? 0 : "-50%"};
   margin-top: 75px;
   width: 100%;
+  transition: top .5s ease-in-out;
 
   @media ${device.tablet} {
     padding-top: 50px;
-    box-shadow: 0px 20px 20px 10px ${colors.darkestBlue};
+    box-shadow: 0px 20px 20px 10px #0a20333d;
   }
 
   @media ${device.mobile} {
     padding-top: 25px;
-    box-shadow: 0px 10px 10px 5px ${colors.darkestBlue};
+    box-shadow: 0px 10px 10px 5px #0a20333d;
   }
 `;
 
@@ -35,7 +37,7 @@ const NavItem = styled.li`
   padding: 18px 0;
   text-align: center;
   list-style-type: none;
-  border-bottom: 2px solid ${colors.darkestBlue};
+  border-bottom: 1px solid ${colors.darkestBlue};
 
   @media ${device.tablet} {
     font-size: 24px;
@@ -53,9 +55,10 @@ const navItems = [
   locationsWithLabels.CONTACT,
 ];
 
-export default function Menu({ onNavigate }) {
+export default function Menu({ onNavigate, show }) {
+  console.log(show)
   return (
-    <Container>
+    <Container show={show}>
       <NavItemList>
         {navItems.map((navItem) => {
           return (

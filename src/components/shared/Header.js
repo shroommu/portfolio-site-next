@@ -152,7 +152,7 @@ export default function Header({ location }) {
         </SocialsContainer>
       </NavigationBar>
       <Leaves />
-      {showMenu && <Menu onNavigate={() => setShowMenu(false)} />}
+      <Menu onNavigate={() => setShowMenu(false)} show={showMenu}/>
     </Container>
   );
 }
