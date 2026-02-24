@@ -33,7 +33,7 @@ export default function Card({
       borderRadius={borderRadius}
       padding={padding}
       mobilePadding={mobilePadding}
-      test-id={testId}
+      data-testid={testId}
       zIndex={zIndex}
       className={className}
     >

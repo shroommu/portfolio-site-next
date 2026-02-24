@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import fs from 'fs';
-import Blog, { getStaticProps } from '../blog';
+import Projects, { getStaticProps } from '../../pages/projects';
 import { serialize } from 'next-mdx-remote/serialize';
 
 jest.mock('fs', () => ({
@@ -12,24 +12,24 @@ jest.mock('next-mdx-remote/serialize', () => ({
   serialize: jest.fn(),
 }));
 
-jest.mock('../blog/BlogCard', () => ({ postPreview }) => (
+jest.mock('../../features/projects/ProjectCard', () => ({ postPreview }) => (
   <div>{postPreview.title}</div>
 ));
 
-describe('Blog page', () => {
-  it('renders blog heading and post previews', () => {
+describe('Projects page', () => {
+  it('renders projects heading and project previews', () => {
     render(
-      <Blog
+      <Projects
         postPreviews={[
-          { slug: 'first-post', title: 'First Post' },
-          { slug: 'second-post', title: 'Second Post' },
+          { slug: 'first-project', title: 'First Project' },
+          { slug: 'second-project', title: 'Second Project' },
         ]}
       />
     );
 
-    expect(screen.getByRole('heading', { name: 'Blog Posts' })).toBeInTheDocument();
-    expect(screen.getByText('First Post')).toBeInTheDocument();
-    expect(screen.getByText('Second Post')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Projects' })).toBeInTheDocument();
+    expect(screen.getByText('First Project')).toBeInTheDocument();
+    expect(screen.getByText('Second Project')).toBeInTheDocument();
   });
 
   it('loads mdx previews in getStaticProps', async () => {
@@ -39,7 +39,7 @@ describe('Blog page', () => {
 
     const result = await getStaticProps();
 
-    expect(fs.readdirSync).toHaveBeenCalledWith('_posts');
+    expect(fs.readdirSync).toHaveBeenCalledWith('_projects');
     expect(fs.readFileSync).toHaveBeenCalled();
     expect(serialize).toHaveBeenCalledWith('file contents', {
       parseFrontmatter: true,

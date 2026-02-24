@@ -11,7 +11,7 @@ const Container = styled.div`
 
 export default function Alert({ testId, children, color, onClose }) {
   return (
-    <Container test-id={testId} color={color}>
+    <Container data-testid={testId} color={color}>
       {children}
       <Icon
         src="assets/icons/x-Icon.png"

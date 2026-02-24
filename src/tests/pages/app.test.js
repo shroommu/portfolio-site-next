@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import App from '../_app';
+import App from '../../pages/_app';
 
-jest.mock('../global.css', () => ({}));
+jest.mock('../../pages/global.css', () => ({}));
 
 jest.mock('../../components/shared/Header.js', () => () => <div>Header</div>);
 jest.mock('../../components/shared/Footer.js', () => () => <div>Footer</div>);

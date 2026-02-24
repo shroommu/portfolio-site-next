@@ -9,7 +9,7 @@ import { Heading } from "../../components/shared";
 
 import { device } from "../../constants";
 
-import BlogCard from "./BlogCard";
+import BlogCard from "../../features/blog/BlogCard";
 
 const Container = styled.div`
   display: flex;
@@ -35,9 +35,9 @@ export default function Blog({ postPreviews }) {
   return (
     <Section testId="blog-home-section">
       <Card testId="blog-home-card">
-        <Container test-id="blog-card-content-container">
+        <Container data-testid="blog-card-content-container">
           <Heading>Blog Posts</Heading>
-          <ContentContainer test-id="blog-posts-container">
+          <ContentContainer data-testid="blog-posts-container">
             {postPreviews.map((postPreview) => {
               return (
                 <BlogCard

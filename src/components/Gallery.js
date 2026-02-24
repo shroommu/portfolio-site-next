@@ -5,7 +5,7 @@ const Container = styled.div``;
 
 export default function Gallery() {
   return (
-    <Container test-id={"gallery"}>
+    <Container data-testid={"gallery"}>
       <ComingSoon />
     </Container>
   );

@@ -2,7 +2,7 @@ import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
-import BlogPost from "./BlogPost";
+import BlogPost from "../../features/blog/BlogPost";
 import {
   Header1,
   Header2,

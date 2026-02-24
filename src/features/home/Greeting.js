@@ -90,18 +90,18 @@ export default function Greeting() {
   return (
     <Section testId="greeting-section">
       <Card testId="greeting-card">
-        <Container test-id="greeting-container">
-          <ProfilePictureContainer test-id="profile-picture-container">
+        <Container data-testid="greeting-container">
+          <ProfilePictureContainer data-testid="profile-picture-container">
             <ProfilePicture
               src={pfp}
-              test-id="profile-picture"
+              data-testid="profile-picture"
               alt="a picture of the author"
               priority
             />
           </ProfilePictureContainer>
-          <TextContainer test-id="greeting-text-container">
-            <Heading test-id="greeting-header">Hi, I&apos;m Alex!</Heading>
-            <SubHeading test-id="greeting-subheader">
+          <TextContainer data-testid="greeting-text-container">
+            <Heading data-testid="greeting-header">Hi, I&apos;m Alex!</Heading>
+            <SubHeading data-testid="greeting-subheader">
               Software Developer, Artist, Pokemon Enthusiast
             </SubHeading>
             <Paragraph>

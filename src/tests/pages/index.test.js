@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import Home from '../index';
+import Home from '../../pages/index';
 
-jest.mock('../home/Greeting', () => () => <div>Greeting section</div>);
+jest.mock('../../features/home/Greeting', () => () => <div>Greeting section</div>);
 
 describe('Home page', () => {
   it('renders greeting section', () => {

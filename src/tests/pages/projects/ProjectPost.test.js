@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ProjectPost from '../ProjectPost';
+import ProjectPost from '../../../features/projects/ProjectPost';
 
 jest.mock('next/link', () => {
   return ({ href, children }) => <a href={href}>{children}</a>;

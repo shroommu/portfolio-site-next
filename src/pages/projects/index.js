@@ -9,7 +9,7 @@ import { Heading } from "../../components/shared";
 
 import { device } from "../../constants";
 
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../../features/projects/ProjectCard";
 
 const Container = styled.div`
   display: flex;
@@ -35,9 +35,9 @@ export default function Projects({ postPreviews }) {
   return (
     <Section testId="project-home-section">
       <Card testId="project-home-card">
-        <Container test-id="project-card-content-container">
+        <Container data-testid="project-card-content-container">
           <Heading>Projects</Heading>
-          <ContentContainer test-id="project-posts-container">
+          <ContentContainer data-testid="project-posts-container">
             {postPreviews.map((postPreview) => {
               return (
                 <ProjectCard

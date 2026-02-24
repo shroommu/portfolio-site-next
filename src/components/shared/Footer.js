@@ -45,7 +45,7 @@ export const WebsiteName = styled.div`
 
 export default function Footer() {
   return (
-    <Container test-id="footer-container">
+    <Container data-testid="footer-container">
       <ContentContainer>
         <Link href={locations.INDEX}>
           <WebsiteName>Alex Kruckenberg</WebsiteName>

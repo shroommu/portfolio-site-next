@@ -2,7 +2,7 @@ import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
-import ProjectPost from "./ProjectPost";
+import ProjectPost from "../../features/projects/ProjectPost";
 import {
   Header1,
   Header2,

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Document from '../_document';
+import Document from '../../pages/_document';
 
 jest.mock('next/document', () => ({
   Html: ({ children }) => <div>{children}</div>,

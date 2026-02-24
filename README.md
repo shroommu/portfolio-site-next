@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# portfolio-site-next
 
-## Getting Started
+Personal portfolio site built with Next.js (Pages Router), styled-components, and MDX content files.
 
-First, run the development server:
+## Stack
+
+- Next.js 13 (Pages Router)
+- React 18
+- styled-components
+- MDX via `next-mdx-remote`
+
+## Project structure
+
+- `src/pages/` — route pages (`/`, `/blog`, `/projects`, `/contact`, etc.)
+- `_posts/` — blog post MDX files
+- `_projects/` — project post MDX files
+- `src/components/` — shared UI components
+- `public/assets/` — static images, icons, SVG assets, and fonts
+
+## Getting started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Available scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm run dev` — start dev server
+- `npm run build` — build production bundle
+- `npm run start` — run production server
+- `npm run lint` — run Next.js ESLint checks
 
-## Learn More
+## Content workflow
 
-To learn more about Next.js, take a look at the following resources:
+- Add a blog post by creating a new `.mdx` file in `_posts/`.
+- Add a project entry by creating a new `.mdx` file in `_projects/`.
+- File name becomes the route slug.
+- Frontmatter fields are used for card preview metadata and page titles.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Deploy as a standard Next.js app.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run build
+npm run start
+```

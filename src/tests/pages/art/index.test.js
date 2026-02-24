@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Art from '../index';
+import Art from '../../../pages/art';
 
 jest.mock('../../../components/Section', () => ({ children }) => (
   <section>

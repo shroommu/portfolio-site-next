@@ -261,7 +261,7 @@ export default function Background() {
             />
           </FoxTreeContainer>
           <FoxArt
-            test-id="fox-art"
+            data-testid="fox-art"
             offsetX={foxOffset[0]}
             offsetY={foxOffset[1]}
           />

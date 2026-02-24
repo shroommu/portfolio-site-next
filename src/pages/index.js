@@ -1,4 +1,4 @@
-import Greeting from "./home/Greeting";
+import Greeting from "../features/home/Greeting";
 // import Section from "../Section";
 // import Gallery from "../Gallery";
 // import Card from "../Card";

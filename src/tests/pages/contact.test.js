@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Contact from '../contact';
+import Contact from '../../pages/contact';
 
 jest.mock('../../components/Alert', () => ({ children }) => <div>{children}</div>);
 jest.mock('../../components/Alert', () => ({ children, onClose }) => (

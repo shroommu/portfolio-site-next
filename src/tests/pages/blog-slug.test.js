@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import fs from 'fs';
-import PostPage, { getStaticPaths, getStaticProps } from '../projects/[slug]';
+import PostPage, { getStaticPaths, getStaticProps } from '../../pages/blog/[slug]';
 import { serialize } from 'next-mdx-remote/serialize';
 
 jest.mock('fs', () => ({
@@ -20,20 +20,20 @@ jest.mock('next-mdx-remote/serialize', () => ({
   serialize: jest.fn(),
 }));
 
-jest.mock('../projects/ProjectPost', () => ({ source, children }) => (
+jest.mock('../../features/blog/BlogPost', () => ({ source, children }) => (
   <div>
     <div>{source.frontmatter.title}</div>
     {children}
   </div>
 ));
 
-describe('Projects [slug] page', () => {
+describe('Blog [slug] page', () => {
   it('renders title and MDX content', () => {
-    const source = { frontmatter: { title: 'Dynamic Project Post' } };
+    const source = { frontmatter: { title: 'Dynamic Blog Post' } };
 
     render(<PostPage source={source} />);
 
-    expect(screen.getAllByText('Dynamic Project Post').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Dynamic Blog Post').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('MDX body')).toBeInTheDocument();
   });
 
@@ -47,10 +47,10 @@ describe('Projects [slug] page', () => {
     fs.readFileSync.mockReturnValue('mdx content');
     serialize.mockResolvedValue({ frontmatter: { title: 'Loaded' }, compiledSource: 'compiled' });
 
-    const result = await getStaticProps({ params: { slug: 'pokedex' } });
+    const result = await getStaticProps({ params: { slug: 'hello-world' } });
 
     expect(fs.readFileSync).toHaveBeenCalledWith(
-      expect.stringContaining('/_projects/pokedex.mdx')
+      expect.stringContaining('/_posts/hello-world.mdx')
     );
     expect(serialize).toHaveBeenCalledWith('mdx content', { parseFrontmatter: true });
     expect(result).toEqual({

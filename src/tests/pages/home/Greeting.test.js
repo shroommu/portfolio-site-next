@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Greeting from '../Greeting';
+import Greeting from '../../../features/home/Greeting';
 
 jest.mock('next/image', () => {
   return ({ alt }) => <img alt={alt} />;

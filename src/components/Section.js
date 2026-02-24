@@ -13,7 +13,7 @@ const Container = styled.section`
 
 export default function Section({ testId, children, margin, padding }) {
   return (
-    <Container test-id={testId} margin={margin} padding={padding}>
+    <Container data-testid={testId} margin={margin} padding={padding}>
       {children}
     </Container>
   );

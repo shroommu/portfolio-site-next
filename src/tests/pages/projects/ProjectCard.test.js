@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import BlogCard from '../BlogCard';
+import ProjectCard from '../../../features/projects/ProjectCard';
 
 jest.mock('next/link', () => {
   return ({ href, children }) => <a href={href}>{children}</a>;
@@ -9,25 +9,25 @@ jest.mock('next/image', () => {
   return ({ alt }) => <img alt={alt} />;
 });
 
-describe('BlogCard', () => {
+describe('ProjectCard', () => {
   it('renders preview content and link', () => {
     render(
-      <BlogCard
+      <ProjectCard
         postPreview={{
-          slug: 'my-post',
+          slug: 'my-project',
           image: '/image.png',
-          title: 'My Post',
+          title: 'My Project',
           excerpt: 'Preview text',
-          tags: ['test', 'react'],
+          tags: ['node', 'next'],
         }}
       />
     );
 
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/blog/my-post');
-    expect(screen.getByText('My Post')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/projects/my-project');
+    expect(screen.getByText('My Project')).toBeInTheDocument();
     expect(screen.getByText('Preview text')).toBeInTheDocument();
-    expect(screen.getByText('#test')).toBeInTheDocument();
-    expect(screen.getByText('#react')).toBeInTheDocument();
+    expect(screen.getByText('#node')).toBeInTheDocument();
+    expect(screen.getByText('#next')).toBeInTheDocument();
     expect(screen.getByText('Read More →')).toBeInTheDocument();
   });
 });
