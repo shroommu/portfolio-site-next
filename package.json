@@ -8,14 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "test:ci": "jest --ci --coverage",
+    "audit:prod": "npm audit --omit=dev",
+    "audit:prod:high": "npm audit --omit=dev --audit-level=high",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@svgr/webpack": "^5.5.0",
-    "autoprefixer": "^10.4.16",
-    "eslint": "8.49.0",
-    "eslint-config-next": "13.5.2",
     "next": "^13.5.2",
     "next-mdx-remote": "^4.4.1",
     "nodemailer": "^8.0.1",
@@ -28,9 +27,13 @@
     "tsparticles": "^2.12.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^8.49.0",
+    "eslint-config-next": "^13.5.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",

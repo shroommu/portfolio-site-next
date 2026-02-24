@@ -56,13 +56,16 @@ Set these environment variables (for local dev in `.env.local`):
 - `npm run start` — run production server
 - `npm run lint` — run Next.js ESLint checks
 - `npm test` — run Jest test suite
+- `npm run test:ci` — run Jest in CI mode with coverage thresholds
+- `npm run audit:prod` — run production dependency audit
+- `npm run audit:prod:high` — fail when high/critical production vulnerabilities are found
 
 ## Quality gates
 
 Pull requests run these checks in CI:
 
 - `npm run lint`
-- `npm test -- --ci`
+- `npm run test:ci`
 - `npm run build`
 
 Run the same checks locally before opening a PR:

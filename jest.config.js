@@ -11,6 +11,14 @@ const customJestConfig = {
     '<rootDir>/src/**/*.js',
     '!<rootDir>/src/**/__tests__/**',
   ],
+  coverageThreshold: {
+    global: {
+      statements: 90,
+      branches: 80,
+      functions: 85,
+      lines: 90,
+    },
+  },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.js',
