@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Contact from '../../pages/contact';
 
-jest.mock('../../components/Alert', () => ({ children }) => <div>{children}</div>);
 jest.mock('../../components/Alert', () => ({ children, onClose }) => (
   <div>
     <span>{children}</span>
@@ -13,6 +12,10 @@ jest.mock('../../components/Alert', () => ({ children, onClose }) => (
 ));
 
 describe('Contact page', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('renders contact form heading and submit button', () => {
     render(<Contact />);
 
@@ -23,6 +26,11 @@ describe('Contact page', () => {
   it('shows email validation message when submitting invalid form', async () => {
     const user = userEvent.setup();
     render(<Contact />);
+
+    const fields = screen.getAllByRole('textbox');
+    await user.type(fields[0], 'Alex');
+    await user.type(fields[1], 'not-an-email');
+    await user.type(fields[2], 'Hello there');
 
     await user.click(screen.getByRole('button', { name: 'Submit' }));
 
@@ -43,52 +51,85 @@ describe('Contact page', () => {
 
   it('submits valid data and shows success message', async () => {
     const user = userEvent.setup();
-    const open = jest.fn();
-    const setRequestHeader = jest.fn();
-    const send = jest.fn();
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ ok: true }),
+    });
 
-    const originalXmlHttpRequest = global.XMLHttpRequest;
-    global.XMLHttpRequest = jest.fn(() => ({
-      open,
-      setRequestHeader,
-      send,
-    }));
+    render(<Contact />);
 
-    try {
-      render(<Contact />);
+    const fields = screen.getAllByRole('textbox');
+    await user.type(fields[0], 'Alex');
+    await user.type(fields[1], 'alex@example.com');
+    await user.type(fields[2], 'Hello there');
 
-      const fields = screen.getAllByRole('textbox');
-      await user.type(fields[0], 'Alex');
-      await user.type(fields[1], 'alex@example.com');
-      await user.type(fields[2], 'Hello there');
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
 
-      await user.click(screen.getByRole('button', { name: 'Submit' }));
+    expect(global.fetch).toHaveBeenCalledWith('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'Alex',
+        email: 'alex@example.com',
+        message: 'Hello there',
+        website: '',
+      }),
+    });
 
-      expect(global.XMLHttpRequest).toHaveBeenCalledTimes(1);
-      expect(open).toHaveBeenCalledWith(
-        'POST',
-        'https://bvgqo6ynu7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer',
-        true
-      );
-      expect(setRequestHeader).toHaveBeenCalledWith('Accept', 'application/json; charset=utf-8');
-      expect(setRequestHeader).toHaveBeenCalledWith(
-        'Content-Type',
-        'application/json; charset=UTF-8'
-      );
-      expect(send).toHaveBeenCalledWith(
-        JSON.stringify({
-          name: 'Alex',
-          email: 'alex@example.com',
-          message: 'Hello there',
+    expect(screen.getByText('Your message has been sent!')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Close alert' }));
+    expect(screen.queryByText('Your message has been sent!')).not.toBeInTheDocument();
+  });
+
+  it('disables submit button while request is in flight', async () => {
+    const user = userEvent.setup();
+    let resolveRequest;
+    global.fetch = jest.fn(
+      () =>
+        new Promise((resolve) => {
+          resolveRequest = resolve;
         })
-      );
+    );
 
-      expect(screen.getByText('Your message has been sent!')).toBeInTheDocument();
+    render(<Contact />);
 
-      await user.click(screen.getByRole('button', { name: 'Close alert' }));
-      expect(screen.queryByText('Your message has been sent!')).not.toBeInTheDocument();
-    } finally {
-      global.XMLHttpRequest = originalXmlHttpRequest;
-    }
+    const fields = screen.getAllByRole('textbox');
+    await user.type(fields[0], 'Alex');
+    await user.type(fields[1], 'alex@example.com');
+    await user.type(fields[2], 'Hello there');
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+
+    expect(screen.getByRole('button', { name: 'Sending...' })).toBeDisabled();
+
+    resolveRequest({ ok: true, json: async () => ({ ok: true }) });
+
+    expect(await screen.findByRole('button', { name: 'Submit' })).toBeInTheDocument();
+  });
+
+  it('shows an error alert if submission fails', async () => {
+    const user = userEvent.setup();
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: false,
+      json: async () => ({
+        error: 'Something went wrong while sending your message. Please try again.',
+      }),
+    });
+
+    render(<Contact />);
+
+    const fields = screen.getAllByRole('textbox');
+    await user.type(fields[0], 'Alex');
+    await user.type(fields[1], 'alex@example.com');
+    await user.type(fields[2], 'Hello there');
+
+    await user.click(screen.getByRole('button', { name: 'Submit' }));
+
+    expect(
+      screen.getByText('Something went wrong while sending your message. Please try again.')
+    ).toBeInTheDocument();
   });
 });
