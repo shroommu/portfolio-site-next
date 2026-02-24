@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import Background from '../Background';
 
 jest.mock('../../../../public/assets', () => {
@@ -28,7 +28,9 @@ describe('Background', () => {
 
     expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
 
-    window.dispatchEvent(new Event('resize'));
+    act(() => {
+      window.dispatchEvent(new Event('resize'));
+    });
 
     addEventListenerSpy.mockRestore();
   });

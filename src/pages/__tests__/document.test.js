@@ -10,11 +10,15 @@ jest.mock('next/document', () => ({
 
 describe('_document', () => {
   it('renders document shell and favicon link', () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     render(<Document />);
 
     const faviconLink = document.querySelector('link[rel="shortcut icon"]');
     expect(faviconLink).toHaveAttribute('href', '/images/favicon.ico');
     expect(screen.getByText('Main')).toBeInTheDocument();
     expect(screen.getByText('NextScript')).toBeInTheDocument();
+
+    errorSpy.mockRestore();
   });
 });
