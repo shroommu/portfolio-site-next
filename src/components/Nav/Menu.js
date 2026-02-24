@@ -55,18 +55,24 @@ const navItems = [
   locationsWithLabels.CONTACT,
 ];
 
-export default function Menu({ onNavigate, show }) {
+export default function Menu({ onNavigate, show, menuId }) {
   return (
-    <Container show={show}>
+    <Container id={menuId} show={show}>
       <NavItemList>
         {navItems.map((navItem) => {
           return (
-            <Link href={navItem.path} onClick={onNavigate} key={navItem.label}>
-              <NavItem>{navItem.label}</NavItem>
-            </Link>
+            <NavItem key={navItem.label}>
+              <Link href={navItem.path} onClick={onNavigate}>
+                {navItem.label}
+              </Link>
+            </NavItem>
           );
         })}
       </NavItemList>
     </Container>
   );
 }
+
+Menu.defaultProps = {
+  menuId: "mobile-site-menu",
+};

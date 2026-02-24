@@ -7,13 +7,19 @@ const BaseInput = styled.textarea`
   resize: vertical;
 `;
 
-export default function TextArea({ value, onChange, className }) {
+export default function TextArea({ value, onChange, className, id, name }) {
   const handleChange = (e) => {
     const { value } = e.target;
     onChange(value);
   };
 
   return (
-    <BaseInput value={value} onChange={handleChange} className={className} />
+    <BaseInput
+      id={id}
+      name={name}
+      value={value}
+      onChange={handleChange}
+      className={className}
+    />
   );
 }

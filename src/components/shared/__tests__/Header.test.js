@@ -33,16 +33,8 @@ jest.mock('../../../../public/assets/index.js', () => ({
 }));
 
 jest.mock('react-icons/md', () => ({
-  MdMenu: ({ onClick }) => (
-    <button aria-label="open menu" onClick={onClick} type="button">
-      open
-    </button>
-  ),
-  MdClose: ({ onClick }) => (
-    <button aria-label="close menu" onClick={onClick} type="button">
-      close
-    </button>
-  ),
+  MdMenu: () => <span>open-icon</span>,
+  MdClose: () => <span>close-icon</span>,
 }));
 
 describe('Header', () => {
@@ -58,11 +50,12 @@ describe('Header', () => {
 
   it('toggles mobile menu visibility', async () => {
     const user = userEvent.setup();
-    render(<Header location={{ pathname: '/' }} />);
+    const { container } = render(<Header location={{ pathname: '/' }} />);
+    const getMenuToggle = () => container.querySelector('button[aria-controls="mobile-site-menu"]');
 
     expect(screen.getByText('menu-closed')).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'open menu' }));
+    await user.click(getMenuToggle());
 
     expect(screen.getByText('menu-open')).toBeInTheDocument();
     const lastCall = mockMenu.mock.calls[mockMenu.mock.calls.length - 1];
@@ -72,10 +65,10 @@ describe('Header', () => {
       })
     );
 
-    await user.click(screen.getByRole('button', { name: 'close menu' }));
+    await user.click(getMenuToggle());
     expect(screen.getByText('menu-closed')).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'open menu' }));
+    await user.click(getMenuToggle());
     await user.click(screen.getByRole('button', { name: 'Navigate' }));
     expect(screen.getByText('menu-closed')).toBeInTheDocument();
   });

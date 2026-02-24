@@ -168,7 +168,7 @@ export default function Contact() {
   return (
     <Section testId="contact-section">
       <Card testId="contact-card">
-        <Container onSubmit={submitForm}>
+        <Container onSubmit={submitForm} noValidate>
           <Heading>Contact Me!</Heading>
           <HoneypotInput
             aria-hidden
@@ -181,27 +181,44 @@ export default function Contact() {
           />
           <LabeledElement
             label="Name"
+            childId="contact-name"
             required
             error={errors.name}
             width={"66%"}
           >
-            <Input value={name} onChange={(value) => validateName(value)} />
+            <Input
+              id="contact-name"
+              name="name"
+              autoComplete="name"
+              value={name}
+              onChange={(value) => validateName(value)}
+            />
           </LabeledElement>
           <LabeledElement
             label="Email"
+            childId="contact-email"
             required
             error={errors.email}
             width={"66%"}
           >
-            <Input value={email} onChange={(value) => validateEmail(value)} />
+            <Input
+              id="contact-email"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={(value) => validateEmail(value)}
+            />
           </LabeledElement>
           <FlexLabeledElement
             label="Message"
+            childId="contact-message"
             required
             error={errors.message}
             width={"66%"}
           >
             <TextArea
+              id="contact-message"
+              name="message"
               value={message}
               onChange={(value) => validateMessage(value)}
             />
