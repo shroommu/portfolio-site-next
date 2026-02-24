@@ -63,13 +63,12 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  all: unset;
+  margin: 0 0 12px 0;
   font-weight: bold;
   font-family: Delicious Handrawn;
   color: ${colors.darkestBlue};
   font-size: 32px;
   text-align: center;
-  margin-bottom: 12px;
 `;
 
 const Excerpt = styled.p`
@@ -108,7 +107,7 @@ export default function BlogCard({ postPreview }) {
           <ImageContainer>
             <Image
               src={postPreview?.image}
-              alt=""
+              alt={postPreview?.title || "Blog post preview image"}
               width={0}
               height={0}
               sizes="100vw"

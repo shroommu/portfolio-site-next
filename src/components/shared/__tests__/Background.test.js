@@ -17,7 +17,7 @@ jest.mock('../../../../public/assets', () => {
 
 jest.mock('../../../../public/assets/svg/fox.svg', () => ({
   __esModule: true,
-  default: (props) => <svg data-testid={props['test-id'] || 'fox'} />,
+  default: (props) => <svg data-testid={props['data-testid'] || 'fox'} />,
 }));
 
 describe('Background', () => {
