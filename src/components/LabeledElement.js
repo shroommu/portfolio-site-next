@@ -29,7 +29,7 @@ export default function LabeledElement({
 }) {
   return (
     <Container className={className} width={width}>
-      <BaseLabel for={childId} test-id={testId}>
+      <BaseLabel htmlFor={childId} test-id={testId}>
         {label}
         {required && "*"}
       </BaseLabel>

@@ -56,7 +56,6 @@ const navItems = [
 ];
 
 export default function Menu({ onNavigate, show }) {
-  console.log(show)
   return (
     <Container show={show}>
       <NavItemList>
