@@ -107,9 +107,10 @@ export default function ProjectCard({ postPreview }) {
             <Image
               src={postPreview?.image}
               alt={postPreview?.title || "Project preview image"}
-              width={0}
-              height={0}
+              width={800}
+              height={450}
               sizes="100vw"
+              style={{ width: "100%", height: "auto" }}
             />
           </ImageContainer>
           <TextContainer>
