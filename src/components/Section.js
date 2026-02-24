@@ -7,13 +7,13 @@ const Container = styled.section`
   margin: ${(p) => p.margin};
 
   @media ${device.tablet} {
-    padding: 5% 10%;
+    padding: 5%;
   }
 `;
 
 export default function Section({ testId, children, margin, padding }) {
   return (
-    <Container test-id={testId} margin={margin} padding={padding}>
+    <Container data-testid={testId} margin={margin} padding={padding}>
       {children}
     </Container>
   );

@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# portfolio-site-next
 
-## Getting Started
+Personal portfolio site built with Next.js (Pages Router), styled-components, and MDX content files.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (Pages Router)
+- React 18
+- styled-components
+- MDX via `next-mdx-remote`
+
+## Project structure
+
+- `src/pages/` — route pages (`/`, `/blog`, `/projects`, `/contact`, etc.)
+- `_posts/` — blog post MDX files
+- `_projects/` — project post MDX files
+- `src/components/` — shared UI components
+- `public/assets/` — static images, icons, SVG assets, and fonts
+
+## Getting started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Contact form email setup
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The contact API route sends email directly through SMTP.
 
-## Learn More
+Set these environment variables (for local dev in `.env.local`):
 
-To learn more about Next.js, take a look at the following resources:
+- `SMTP_HOST` (example: `smtp.sendgrid.net`)
+- `SMTP_PORT` (example: `587`)
+- `SMTP_SECURE` (`true` for SSL/TLS, usually `false` on port `587`)
+- `SMTP_USER`
+- `SMTP_PASS`
+- `CONTACT_TO_EMAIL` (inbox that receives contact messages)
+- `CONTACT_FROM_EMAIL` (sender address used by your SMTP provider)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` default to `SMTP_USER` if omitted.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Available scripts
 
-## Deploy on Vercel
+- `npm run dev` — start dev server (Turbopack)
+- `npm run build` — build production bundle (Turbopack)
+- `npm run start` — run production server
+- `npm run lint` — run ESLint checks
+- `npm test` — run Jest test suite
+- `npm run test:ci` — run Jest in CI mode with coverage thresholds
+- `npm run audit:prod` — run production dependency audit
+- `npm run audit:prod:high` — fail when high/critical production vulnerabilities are found
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Quality gates
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Pull requests run these checks in CI:
+
+- `npm run lint`
+- `npm run test:ci`
+- `npm run build`
+
+Run the same checks locally before opening a PR:
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
+## Content workflow
+
+- Add a blog post by creating a new `.mdx` file in `_posts/`.
+- Add a project entry by creating a new `.mdx` file in `_projects/`.
+- File name becomes the route slug.
+- Frontmatter fields are used for card preview metadata and page titles.
+
+## Deployment
+
+Deploy as a standard Next.js app.
+
+```bash
+npm run build
+npm run start
+```

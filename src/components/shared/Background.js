@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 import { device } from "../../constants";
@@ -134,15 +134,26 @@ export default function Background() {
 
   const foxTreeRef = useRef(null);
 
-  useEffect(() => {
-    window.addEventListener("resize", updateSize);
-    updateSize();
+  const updateSize = useCallback(() => {
+    const treeRect = foxTreeRef.current?.getBoundingClientRect();
+
+    if (!treeRect) {
+      return;
+    }
+
+    const { right, bottom } = treeRect;
+    setFoxOffset([right, bottom]);
   }, []);
 
-  const updateSize = () => {
-    const { right, bottom } = foxTreeRef.current?.getBoundingClientRect();
-    setFoxOffset([right, bottom]);
-  };
+  useEffect(() => {
+    window.addEventListener("resize", updateSize);
+    const frameId = window.requestAnimationFrame(updateSize);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener("resize", updateSize);
+    };
+  }, [updateSize]);
 
   return (
     <BackgroundContainer testId="background-container">
@@ -261,7 +272,7 @@ export default function Background() {
             />
           </FoxTreeContainer>
           <FoxArt
-            test-id="fox-art"
+            data-testid="fox-art"
             offsetX={foxOffset[0]}
             offsetY={foxOffset[1]}
           />

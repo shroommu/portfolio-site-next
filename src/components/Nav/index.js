@@ -30,19 +30,6 @@ export default function Nav({ location }) {
           Home
         </Button>
       </Link>
-      {/* <Link href={locations.ART}>
-        <Button
-          margin="0 8px 0 0"
-          fontSize="24px"
-          theme={
-            location.pathname === locations.ART
-              ? themes.secondary
-              : themes.default
-          }
-        >
-          Art
-        </Button>
-      </Link> */}
       <Link href={locations.PROJECTS}>
         <Button
           margin="0 8px 0 0"

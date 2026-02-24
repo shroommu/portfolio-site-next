@@ -14,7 +14,7 @@ const Heading = styled(UnstyledHeading)`
   text-align: center;
 `;
 
-const Container = styled.div`
+const Container = styled.form`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -25,12 +25,28 @@ const FlexLabeledElement = styled(LabeledElement)`
   flex: 1;
 `;
 
+const HoneypotInput = styled.input`
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+`;
+
+const EMAIL_REGEX =
+  /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export default function Contact() {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState({ name: "", email: "", message: "" });
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [showValidationMessage, setShowValidationMessage] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({
+    type: "",
+    message: "",
+  });
 
   const validateName = useCallback(
     (value) => {
@@ -84,83 +100,125 @@ export default function Contact() {
     setName("");
     setEmail("");
     setMessage("");
+    setHoneypot("");
     setErrors({ name: "", email: "", message: "" });
-  }, [setName, setEmail, setMessage, setErrors]);
+  }, [setName, setEmail, setMessage, setHoneypot, setErrors]);
 
-  const submitForm = useCallback(() => {
-    const data = { name, email, message };
+  const submitForm = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    const emailValid = email.match(
-      /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
+      const nextErrors = {
+        name: name.trim() ? "" : "Please enter a value",
+        email: email.trim() ? "" : "Please enter a value",
+        message: message.trim() ? "" : "Please enter a value",
+      };
 
-    if (!emailValid) {
-      setErrors((prev) => {
-        return { ...prev, email: "Please enter a valid email address" };
-      });
-    }
+      if (nextErrors.email === "" && !EMAIL_REGEX.test(email)) {
+        nextErrors.email = "Please enter a valid email address";
+      }
 
-    if (
-      errors.name === "" &&
-      errors.email === "" &&
-      errors.message === "" &&
-      emailValid
-    ) {
-      let xhr = new XMLHttpRequest();
-      xhr.open(
-        "POST",
-        "https://bvgqo6ynu7.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer",
-        true
-      );
-      xhr.setRequestHeader("Accept", "application/json; charset=utf-8");
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+      setErrors(nextErrors);
+      setSubmitStatus({ type: "", message: "" });
 
-      xhr.send(JSON.stringify(data));
+      if (nextErrors.name || nextErrors.email || nextErrors.message) {
+        return;
+      }
 
-      resetForm();
+      setIsSubmitting(true);
 
-      setShowValidationMessage(true);
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message,
+            website: honeypot,
+          }),
+        });
 
-      return false;
-    }
-  }, [
-    name,
-    email,
-    message,
-    setErrors,
-    errors,
-    resetForm,
-    setShowValidationMessage,
-  ]);
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          throw new Error(
+            body?.error ||
+              "Something went wrong while sending your message. Please try again."
+          );
+        }
+
+        resetForm();
+        setSubmitStatus({ type: "success", message: "Your message has been sent!" });
+      } catch (error) {
+        setSubmitStatus({
+          type: "error",
+          message:
+            error?.message ||
+            "Something went wrong while sending your message. Please try again.",
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [name, email, message, honeypot, resetForm]
+  );
 
   return (
     <Section testId="contact-section">
       <Card testId="contact-card">
-        <Container>
+        <Container onSubmit={submitForm} noValidate>
           <Heading>Contact Me!</Heading>
+          <HoneypotInput
+            aria-hidden
+            tabIndex={-1}
+            autoComplete="off"
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
           <LabeledElement
             label="Name"
+            childId="contact-name"
             required
             error={errors.name}
             width={"66%"}
           >
-            <Input value={name} onChange={(value) => validateName(value)} />
+            <Input
+              id="contact-name"
+              name="name"
+              autoComplete="name"
+              value={name}
+              onChange={(value) => validateName(value)}
+            />
           </LabeledElement>
           <LabeledElement
             label="Email"
+            childId="contact-email"
             required
             error={errors.email}
             width={"66%"}
           >
-            <Input value={email} onChange={(value) => validateEmail(value)} />
+            <Input
+              id="contact-email"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={(value) => validateEmail(value)}
+            />
           </LabeledElement>
           <FlexLabeledElement
             label="Message"
+            childId="contact-message"
             required
             error={errors.message}
             width={"66%"}
           >
             <TextArea
+              id="contact-message"
+              name="message"
               value={message}
               onChange={(value) => validateMessage(value)}
             />
@@ -168,19 +226,18 @@ export default function Contact() {
           <Button
             theme={themes.tertiary}
             type="submit"
-            onClick={submitForm}
-            disabled={errors.name || errors.email || errors.message}
+            disabled={isSubmitting}
             margin={"0 0 16px 0"}
           >
-            Submit
+            {isSubmitting ? "Sending..." : "Submit"}
           </Button>
-          {showValidationMessage && (
+          {submitStatus.type && (
             <Alert
-              testId="successful-message-alert"
-              color="green"
-              onClose={() => setShowValidationMessage(false)}
+              testId={`${submitStatus.type}-message-alert`}
+              color={submitStatus.type === "success" ? "green" : "#bf2d2d"}
+              onClose={() => setSubmitStatus({ type: "", message: "" })}
             >
-              Your message has been sent!
+              {submitStatus.message}
             </Alert>
           )}
         </Container>

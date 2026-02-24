@@ -36,26 +36,27 @@ const NavigationBar = styled.nav`
   }
 `;
 
-const MenuIcon = styled(MdMenu)`
+const MenuToggleButton = styled.button`
   display: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 24px;
+  cursor: pointer;
 
   @media ${device.tablet} or ${device.mobile} {
     display: block;
-    color: ${colors.white};
-    font-size: 36px;
-    margin-right: 24px;
   }
 `;
 
-const MenuCloseIcon = styled(MdClose)`
-  display: none;
+const MenuIcon = styled(MdMenu)`
+  color: ${colors.white};
+  font-size: 36px;
+`;
 
-  @media ${device.tablet} or ${device.mobile} {
-    display: block;
-    color: ${colors.white};
-    font-size: 36px;
-    margin-right: 24px;
-  }
+const MenuCloseIcon = styled(MdClose)`
+  color: ${colors.white};
+  font-size: 36px;
 `;
 
 const SocialsContainer = styled.div`
@@ -110,11 +111,15 @@ export default function Header({ location }) {
   return (
     <Container>
       <NavigationBar>
-        {showMenu ? (
-          <MenuCloseIcon onClick={toggleShowMenu} />
-        ) : (
-          <MenuIcon onClick={toggleShowMenu} />
-        )}
+        <MenuToggleButton
+          type="button"
+          onClick={toggleShowMenu}
+          aria-label={showMenu ? "Close menu" : "Open menu"}
+          aria-expanded={showMenu}
+          aria-controls="mobile-site-menu"
+        >
+          {showMenu ? <MenuCloseIcon /> : <MenuIcon />}
+        </MenuToggleButton>
         <Link href={locations.INDEX}>
           <WebsiteName>Alex Kruckenberg</WebsiteName>
         </Link>
@@ -125,7 +130,7 @@ export default function Header({ location }) {
               Contact
             </Button>
           </Link>
-          <ExternalLink href="http://instagram.com/shroommu">
+          <ExternalLink href="https://instagram.com/shroommu">
             <SocialIcon
               src="/assets/icons/icons8-instagram-64.png"
               height="48px"
@@ -133,7 +138,7 @@ export default function Header({ location }) {
               alt="instagram icon"
             />
           </ExternalLink>
-          <ExternalLink href="http://github.com/shroommu">
+          <ExternalLink href="https://github.com/shroommu">
             <SocialIcon
               src="/assets/icons/icons8-github-64.png"
               height="48px"
@@ -141,7 +146,7 @@ export default function Header({ location }) {
               alt="github icon"
             />
           </ExternalLink>
-          <ExternalLink href="http://linkedin.com/in/alex-kruckenberg">
+          <ExternalLink href="https://linkedin.com/in/alex-kruckenberg">
             <SocialIcon
               src="/assets/icons/icons8-linkedin-64.png"
               height="48px"
@@ -152,7 +157,7 @@ export default function Header({ location }) {
         </SocialsContainer>
       </NavigationBar>
       <Leaves />
-      {showMenu && <Menu onNavigate={() => setShowMenu(false)} />}
+      <Menu menuId="mobile-site-menu" onNavigate={() => setShowMenu(false)} show={showMenu} />
     </Container>
   );
 }

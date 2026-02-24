@@ -17,8 +17,14 @@ div, p, input, textarea, label {
     font-family: Bitter;
 }
 
-button, p, a {
-    all: unset;
+button {
+    font: inherit;
+    color: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 p {

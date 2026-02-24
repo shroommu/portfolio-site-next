@@ -28,12 +28,14 @@ const ButtonContainer = styled.button`
   padding: 8px;
   margin: ${(p) => p.margin};
   background: ${(p) => p.theme.background};
+  border: none;
   height: fit-content;
   width: fit-content;
   border-radius: 10px;
   font-family: ${(p) => p.fontFamily};
   font-size: ${(p) => p.fontSize};
   color: ${(p) => p.theme.fontColor};
+  cursor: pointer;
 
   &:hover {
     background: ${(p) => p.theme.hover};
