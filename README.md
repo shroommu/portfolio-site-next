@@ -51,8 +51,8 @@ Set these environment variables (for local dev in `.env.local`):
 
 ## Available scripts
 
-- `npm run dev` — start dev server (webpack mode)
-- `npm run build` — build production bundle (webpack mode)
+- `npm run dev` — start dev server (Turbopack)
+- `npm run build` — build production bundle (Turbopack)
 - `npm run start` — run production server
 - `npm run lint` — run ESLint checks
 - `npm test` — run Jest test suite
