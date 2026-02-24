@@ -44,13 +44,15 @@ export const WebsiteName = styled.div`
 `;
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <Container data-testid="footer-container">
       <ContentContainer>
         <Link href={locations.INDEX}>
           <WebsiteName>Alex Kruckenberg</WebsiteName>
         </Link>
-        <CopyrightContainer>Copyright 2025</CopyrightContainer>
+        <CopyrightContainer>{`Copyright ${currentYear}`}</CopyrightContainer>
       </ContentContainer>
     </Container>
   );

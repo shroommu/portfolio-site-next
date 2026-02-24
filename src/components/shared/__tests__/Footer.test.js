@@ -7,10 +7,12 @@ jest.mock('next/link', () => {
 
 describe('Footer', () => {
   it('renders site name link and copyright', () => {
+    const currentYear = new Date().getFullYear();
+
     render(<Footer />);
 
     expect(screen.getByRole('link', { name: 'Alex Kruckenberg' })).toHaveAttribute('href', '/');
-    expect(screen.getByText('Copyright 2025')).toBeInTheDocument();
+    expect(screen.getByText(`Copyright ${currentYear}`)).toBeInTheDocument();
   });
 
   it('renders WebsiteName export', () => {

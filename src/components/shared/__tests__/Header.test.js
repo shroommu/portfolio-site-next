@@ -51,9 +51,9 @@ describe('Header', () => {
 
     expect(screen.getByRole('link', { name: 'Alex Kruckenberg' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact/');
-    expect(screen.getByRole('link', { name: 'instagram icon' })).toHaveAttribute('href', 'http://instagram.com/shroommu');
-    expect(screen.getByRole('link', { name: 'github icon' })).toHaveAttribute('href', 'http://github.com/shroommu');
-    expect(screen.getByRole('link', { name: 'linkedin icon' })).toHaveAttribute('href', 'http://linkedin.com/in/alex-kruckenberg');
+    expect(screen.getByRole('link', { name: 'instagram icon' })).toHaveAttribute('href', 'https://instagram.com/shroommu');
+    expect(screen.getByRole('link', { name: 'github icon' })).toHaveAttribute('href', 'https://github.com/shroommu');
+    expect(screen.getByRole('link', { name: 'linkedin icon' })).toHaveAttribute('href', 'https://linkedin.com/in/alex-kruckenberg');
   });
 
   it('toggles mobile menu visibility', async () => {

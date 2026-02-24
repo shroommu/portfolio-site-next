@@ -125,7 +125,7 @@ export default function Header({ location }) {
               Contact
             </Button>
           </Link>
-          <ExternalLink href="http://instagram.com/shroommu">
+          <ExternalLink href="https://instagram.com/shroommu">
             <SocialIcon
               src="/assets/icons/icons8-instagram-64.png"
               height="48px"
@@ -133,7 +133,7 @@ export default function Header({ location }) {
               alt="instagram icon"
             />
           </ExternalLink>
-          <ExternalLink href="http://github.com/shroommu">
+          <ExternalLink href="https://github.com/shroommu">
             <SocialIcon
               src="/assets/icons/icons8-github-64.png"
               height="48px"
@@ -141,7 +141,7 @@ export default function Header({ location }) {
               alt="github icon"
             />
           </ExternalLink>
-          <ExternalLink href="http://linkedin.com/in/alex-kruckenberg">
+          <ExternalLink href="https://linkedin.com/in/alex-kruckenberg">
             <SocialIcon
               src="/assets/icons/icons8-linkedin-64.png"
               height="48px"
