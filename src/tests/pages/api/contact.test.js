@@ -36,6 +36,7 @@ describe('/api/contact handler', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     delete process.env.SMTP_HOST;
     delete process.env.SMTP_PORT;
     delete process.env.SMTP_SECURE;
@@ -43,6 +44,10 @@ describe('/api/contact handler', () => {
     delete process.env.SMTP_PASS;
     delete process.env.CONTACT_TO_EMAIL;
     delete process.env.CONTACT_FROM_EMAIL;
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it('returns 405 for non-POST requests', async () => {
@@ -94,6 +99,28 @@ describe('/api/contact handler', () => {
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.body).toEqual({ error: 'Missing required fields.' });
+  });
+
+  it('returns 400 for invalid payload types', async () => {
+    const { default: handler } = await import('../../../pages/api/contact');
+    const req = {
+      method: 'POST',
+      body: {
+        name: 123,
+        email: 'alex@example.com',
+        message: 'hello',
+        website: '',
+      },
+      headers: {
+        'x-forwarded-for': '203.0.113.12',
+      },
+    };
+    const res = createMockRes();
+
+    await handler(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.body).toEqual({ error: 'Invalid request payload.' });
   });
 
   it('returns 400 for invalid email format', async () => {
@@ -211,5 +238,44 @@ describe('/api/contact handler', () => {
     expect(res.body).toEqual({
       error: 'Something went wrong while sending your message. Please try again.',
     });
+  });
+
+  it('returns 429 when request limit is exceeded for an IP', async () => {
+    process.env.SMTP_HOST = 'smtp.example.com';
+    process.env.SMTP_USER = 'smtp-user@example.com';
+    process.env.SMTP_PASS = 'secret';
+
+    const sendMail = jest.fn().mockResolvedValue({});
+    getCreateTransportMock().mockReturnValue({ sendMail });
+
+    const { default: handler } = await import('../../../pages/api/contact');
+    const buildReq = () => ({
+      method: 'POST',
+      headers: {
+        'x-forwarded-for': '198.51.100.42',
+      },
+      body: {
+        name: 'Alex',
+        email: 'alex@example.com',
+        message: 'hello',
+        website: '',
+      },
+    });
+
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      const res = createMockRes();
+      await handler(buildReq(), res);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.body).toEqual({ ok: true });
+    }
+
+    const blockedRes = createMockRes();
+    await handler(buildReq(), blockedRes);
+
+    expect(blockedRes.status).toHaveBeenCalledWith(429);
+    expect(blockedRes.body).toEqual({
+      error: 'Too many requests. Please try again later.',
+    });
+    expect(sendMail).toHaveBeenCalledTimes(5);
   });
 });
