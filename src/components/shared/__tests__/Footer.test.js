@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Footer from '../Footer';
+import Footer, { WebsiteName } from '../Footer';
 
 jest.mock('next/link', () => {
   return ({ href, children }) => <a href={href}>{children}</a>;
@@ -11,5 +11,11 @@ describe('Footer', () => {
 
     expect(screen.getByRole('link', { name: 'Alex Kruckenberg' })).toHaveAttribute('href', '/');
     expect(screen.getByText('Copyright 2025')).toBeInTheDocument();
+  });
+
+  it('renders WebsiteName export', () => {
+    render(<WebsiteName>Site Name</WebsiteName>);
+
+    expect(screen.getByText('Site Name')).toBeInTheDocument();
   });
 });

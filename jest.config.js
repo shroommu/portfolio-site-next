@@ -7,6 +7,10 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.js',
+    '!<rootDir>/src/**/__tests__/**',
+  ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(svg)$': '<rootDir>/test/__mocks__/svgMock.js',

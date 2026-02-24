@@ -1,5 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import Projects from '../projects';
+import fs from 'fs';
+import Projects, { getStaticProps } from '../projects';
+import { serialize } from 'next-mdx-remote/serialize';
+
+jest.mock('fs', () => ({
+  readdirSync: jest.fn(),
+  readFileSync: jest.fn(),
+}));
 
 jest.mock('next-mdx-remote/serialize', () => ({
   serialize: jest.fn(),
@@ -23,5 +30,25 @@ describe('Projects page', () => {
     expect(screen.getByRole('heading', { name: 'Projects' })).toBeInTheDocument();
     expect(screen.getByText('First Project')).toBeInTheDocument();
     expect(screen.getByText('Second Project')).toBeInTheDocument();
+  });
+
+  it('loads mdx previews in getStaticProps', async () => {
+    fs.readdirSync.mockReturnValue(['one.mdx', 'ignore.txt']);
+    fs.readFileSync.mockReturnValue('file contents');
+    serialize.mockResolvedValue({ frontmatter: { title: 'One' } });
+
+    const result = await getStaticProps();
+
+    expect(fs.readdirSync).toHaveBeenCalledWith('_projects');
+    expect(fs.readFileSync).toHaveBeenCalled();
+    expect(serialize).toHaveBeenCalledWith('file contents', {
+      parseFrontmatter: true,
+    });
+    expect(result).toEqual({
+      props: {
+        postPreviews: [{ title: 'One', slug: 'one' }],
+      },
+      revalidate: 60,
+    });
   });
 });

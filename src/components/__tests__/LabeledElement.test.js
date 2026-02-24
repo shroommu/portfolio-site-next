@@ -13,4 +13,15 @@ describe('LabeledElement', () => {
     expect(screen.getByRole('textbox', { name: 'Name input' })).toBeInTheDocument();
     expect(screen.getByText('Required field')).toBeInTheDocument();
   });
+
+  it('renders label without required marker when required is false', () => {
+    render(
+      <LabeledElement label="Email" required={false} error="">
+        <input aria-label="Email input" />
+      </LabeledElement>
+    );
+
+    expect(screen.getByText('Email')).toBeInTheDocument();
+    expect(screen.queryByText('Email*')).not.toBeInTheDocument();
+  });
 });

@@ -3,6 +3,14 @@ import userEvent from '@testing-library/user-event';
 import Contact from '../contact';
 
 jest.mock('../../components/Alert', () => ({ children }) => <div>{children}</div>);
+jest.mock('../../components/Alert', () => ({ children, onClose }) => (
+  <div>
+    <span>{children}</span>
+    <button type="button" onClick={onClose}>
+      Close alert
+    </button>
+  </div>
+));
 
 describe('Contact page', () => {
   it('renders contact form heading and submit button', () => {
@@ -19,6 +27,18 @@ describe('Contact page', () => {
     await user.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
+  });
+
+  it('shows required field messages for blank values', async () => {
+    const user = userEvent.setup();
+    render(<Contact />);
+
+    const fields = screen.getAllByRole('textbox');
+    await user.type(fields[0], ' ');
+    await user.type(fields[1], ' ');
+    await user.type(fields[2], ' ');
+
+    expect(screen.getAllByText('Please enter a value')).toHaveLength(3);
   });
 
   it('submits valid data and shows success message', async () => {
@@ -64,6 +84,9 @@ describe('Contact page', () => {
       );
 
       expect(screen.getByText('Your message has been sent!')).toBeInTheDocument();
+
+      await user.click(screen.getByRole('button', { name: 'Close alert' }));
+      expect(screen.queryByText('Your message has been sent!')).not.toBeInTheDocument();
     } finally {
       global.XMLHttpRequest = originalXmlHttpRequest;
     }

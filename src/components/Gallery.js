@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ComingSoon } from "../shared";
+import { ComingSoon } from "./shared";
 
 const Container = styled.div``;
 

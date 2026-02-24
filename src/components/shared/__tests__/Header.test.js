@@ -71,5 +71,12 @@ describe('Header', () => {
         show: true,
       })
     );
+
+    await user.click(screen.getByRole('button', { name: 'close menu' }));
+    expect(screen.getByText('menu-closed')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'open menu' }));
+    await user.click(screen.getByRole('button', { name: 'Navigate' }));
+    expect(screen.getByText('menu-closed')).toBeInTheDocument();
   });
 });
