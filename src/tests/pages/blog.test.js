@@ -1,15 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import fs from 'fs';
 import Blog, { getStaticProps } from '../../pages/blog';
-import { serialize } from 'next-mdx-remote/serialize';
+import { getMdxPreviews } from '../../lib/content';
 
-jest.mock('fs', () => ({
-  readdirSync: jest.fn(),
-  readFileSync: jest.fn(),
-}));
-
-jest.mock('next-mdx-remote/serialize', () => ({
-  serialize: jest.fn(),
+jest.mock('../../lib/content', () => ({
+  getMdxPreviews: jest.fn(),
 }));
 
 jest.mock('../../features/blog/BlogCard', () => ({ postPreview }) => (
@@ -33,17 +27,11 @@ describe('Blog page', () => {
   });
 
   it('loads mdx previews in getStaticProps', async () => {
-    fs.readdirSync.mockReturnValue(['one.mdx', 'ignore.txt']);
-    fs.readFileSync.mockReturnValue('file contents');
-    serialize.mockResolvedValue({ frontmatter: { title: 'One' } });
+    getMdxPreviews.mockResolvedValue([{ title: 'One', slug: 'one' }]);
 
     const result = await getStaticProps();
 
-    expect(fs.readdirSync).toHaveBeenCalledWith('_posts');
-    expect(fs.readFileSync).toHaveBeenCalled();
-    expect(serialize).toHaveBeenCalledWith('file contents', {
-      parseFrontmatter: true,
-    });
+    expect(getMdxPreviews).toHaveBeenCalledWith('_posts');
     expect(result).toEqual({
       props: {
         postPreviews: [{ title: 'One', slug: 'one' }],

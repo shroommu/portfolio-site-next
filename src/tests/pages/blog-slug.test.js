@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import fs from 'fs';
 import PostPage, { getStaticPaths, getStaticProps } from '../../pages/blog/[slug]';
-import { serialize } from 'next-mdx-remote/serialize';
+import { getMdxSlugPaths, getMdxSourceBySlug } from '../../lib/content';
 
-jest.mock('fs', () => ({
-  readFileSync: jest.fn(),
+jest.mock('../../lib/content', () => ({
+  getMdxSlugPaths: jest.fn(),
+  getMdxSourceBySlug: jest.fn(),
 }));
 
 jest.mock('next/head', () => ({
@@ -14,10 +14,6 @@ jest.mock('next/head', () => ({
 
 jest.mock('next-mdx-remote', () => ({
   MDXRemote: () => <div>MDX body</div>,
-}));
-
-jest.mock('next-mdx-remote/serialize', () => ({
-  serialize: jest.fn(),
 }));
 
 jest.mock('../../features/blog/BlogPost', () => ({ source, children }) => (
@@ -38,21 +34,23 @@ describe('Blog [slug] page', () => {
   });
 
   it('returns blocking fallback static paths', async () => {
+    getMdxSlugPaths.mockReturnValue([{ params: { slug: 'hello-world' } }]);
+
     const result = await getStaticPaths();
 
-    expect(result).toEqual({ paths: [], fallback: 'blocking' });
+    expect(getMdxSlugPaths).toHaveBeenCalledWith('_posts');
+    expect(result).toEqual({ paths: [{ params: { slug: 'hello-world' } }], fallback: false });
   });
 
   it('loads and serializes mdx in getStaticProps', async () => {
-    fs.readFileSync.mockReturnValue('mdx content');
-    serialize.mockResolvedValue({ frontmatter: { title: 'Loaded' }, compiledSource: 'compiled' });
+    getMdxSourceBySlug.mockResolvedValue({
+      frontmatter: { title: 'Loaded' },
+      compiledSource: 'compiled',
+    });
 
     const result = await getStaticProps({ params: { slug: 'hello-world' } });
 
-    expect(fs.readFileSync).toHaveBeenCalledWith(
-      expect.stringContaining('/_posts/hello-world.mdx')
-    );
-    expect(serialize).toHaveBeenCalledWith('mdx content', { parseFrontmatter: true });
+    expect(getMdxSourceBySlug).toHaveBeenCalledWith('_posts', 'hello-world');
     expect(result).toEqual({
       props: {
         source: { frontmatter: { title: 'Loaded' }, compiledSource: 'compiled' },

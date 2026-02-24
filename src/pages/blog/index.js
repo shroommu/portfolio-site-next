@@ -1,6 +1,3 @@
-import fs from "fs";
-import path from "path";
-import { serialize } from "next-mdx-remote/serialize";
 import styled from "styled-components";
 
 import Section from "../../components/Section";
@@ -8,6 +5,7 @@ import Card from "../../components/Card";
 import { Heading } from "../../components/shared";
 
 import { device } from "../../constants";
+import { getMdxPreviews } from "../../lib/content";
 
 import BlogCard from "../../features/blog/BlogCard";
 
@@ -55,31 +53,11 @@ export default function Blog({ postPreviews }) {
 }
 
 export async function getStaticProps() {
-  const postFilePaths = fs.readdirSync("_posts").filter((postFilePath) => {
-    return path.extname(postFilePath).toLowerCase() === ".mdx";
-  });
-
-  const postPreviews = [];
-
-  for (const postFilePath of postFilePaths) {
-    const postFile = fs.readFileSync(
-      process.cwd() + `/_posts/${postFilePath}`,
-      "utf8"
-    );
-
-    const serializedPost = await serialize(postFile, {
-      parseFrontmatter: true,
-    });
-
-    postPreviews.push({
-      ...serializedPost.frontmatter,
-      slug: postFilePath.replace(".mdx", ""),
-    });
-  }
+  const postPreviews = await getMdxPreviews("_posts");
 
   return {
     props: {
-      postPreviews: postPreviews,
+      postPreviews,
     },
     revalidate: 60,
   };

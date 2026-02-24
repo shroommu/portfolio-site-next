@@ -1,8 +1,7 @@
-import fs from "fs";
-import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
 import BlogPost from "../../features/blog/BlogPost";
+import { getMdxSlugPaths, getMdxSourceBySlug } from "../../lib/content";
 import {
   Header1,
   Header2,
@@ -36,15 +35,15 @@ export default function PostPage({ source }) {
   );
 }
 export async function getStaticPaths() {
-  return { paths: [], fallback: "blocking" };
+  return {
+    paths: getMdxSlugPaths("_posts"),
+    fallback: false,
+  };
 }
 
 export async function getStaticProps(ctx) {
   const { slug } = ctx.params;
-
-  const postFile = fs.readFileSync(process.cwd() + `/_posts/${slug}.mdx`);
-
-  const mdxSource = await serialize(postFile, { parseFrontmatter: true });
+  const mdxSource = await getMdxSourceBySlug("_posts", slug);
 
   return {
     props: {
