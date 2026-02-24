@@ -110,7 +110,6 @@ export default function ProjectCard({ postPreview }) {
               width={0}
               height={0}
               sizes="100vw"
-              priority
             />
           </ImageContainer>
           <TextContainer>

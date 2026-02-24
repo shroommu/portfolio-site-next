@@ -33,6 +33,22 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Contact form email setup
+
+The contact API route sends email directly through SMTP.
+
+Set these environment variables (for local dev in `.env.local`):
+
+- `SMTP_HOST` (example: `smtp.sendgrid.net`)
+- `SMTP_PORT` (example: `587`)
+- `SMTP_SECURE` (`true` for SSL/TLS, usually `false` on port `587`)
+- `SMTP_USER`
+- `SMTP_PASS`
+- `CONTACT_TO_EMAIL` (inbox that receives contact messages)
+- `CONTACT_FROM_EMAIL` (sender address used by your SMTP provider)
+
+`CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` default to `SMTP_USER` if omitted.
+
 ## Available scripts
 
 - `npm run dev` — start dev server
