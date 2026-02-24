@@ -4,7 +4,7 @@ Personal portfolio site built with Next.js (Pages Router), styled-components, an
 
 ## Stack
 
-- Next.js 13 (Pages Router)
+- Next.js 16 (Pages Router)
 - React 18
 - styled-components
 - MDX via `next-mdx-remote`
@@ -51,10 +51,10 @@ Set these environment variables (for local dev in `.env.local`):
 
 ## Available scripts
 
-- `npm run dev` — start dev server
-- `npm run build` — build production bundle
+- `npm run dev` — start dev server (webpack mode)
+- `npm run build` — build production bundle (webpack mode)
 - `npm run start` — run production server
-- `npm run lint` — run Next.js ESLint checks
+- `npm run lint` — run ESLint checks
 - `npm test` — run Jest test suite
 - `npm run test:ci` — run Jest in CI mode with coverage thresholds
 - `npm run audit:prod` — run production dependency audit
