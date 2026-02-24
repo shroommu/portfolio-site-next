@@ -147,9 +147,10 @@ export default function Background() {
 
   useEffect(() => {
     window.addEventListener("resize", updateSize);
-    updateSize();
+    const frameId = window.requestAnimationFrame(updateSize);
 
     return () => {
+      window.cancelAnimationFrame(frameId);
       window.removeEventListener("resize", updateSize);
     };
   }, [updateSize]);

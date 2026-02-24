@@ -7,11 +7,11 @@ Date: 2026-02-24
 - Purpose: triage production dependency risks and define upgrade order.
 
 ## Summary
-- Total vulnerabilities: 7
-- Critical: 1
-- High: 2
-- Moderate: 3
-- Low: 1
+- Total vulnerabilities: 3
+- Critical: 0
+- High: 1
+- Moderate: 2
+- Low: 0
 
 ## Changes applied during triage
 - Moved build/lint tooling from runtime to dev dependencies:
@@ -19,27 +19,26 @@ Date: 2026-02-24
    - `eslint-config-next`
    - `@svgr/webpack`
    - `autoprefixer`
-- Outcome: reduced production audit exposure from 18 issues (1 critical / 10 high) to 7 issues (1 critical / 2 high).
+- Upgraded framework and lint stack:
+   - `next` → `16.1.6`
+   - `next-mdx-remote` → `6.0.0`
+   - `eslint-config-next` → `16.1.6`
+   - `eslint` → `9.39.3`
+- Added `eslint.config.mjs` (flat config) and updated scripts for Next 16:
+   - `lint`: `eslint .`
+   - `dev`: `next dev --webpack`
+   - `build`: `next build --webpack`
+- Outcome: reduced production audit exposure from 18 issues (1 critical / 10 high) to 3 issues (0 critical / 1 high).
 
-## Priority findings
-1. `next` (direct, critical)
-   - Reported vulnerable range includes current `13.5.2`.
-   - Recommended action: plan framework upgrade path to a fixed `next` release.
-
-2. `next-mdx-remote` (direct high)
-   - Current `4.4.1`, fix available is semver-major (`6.0.0`).
-   - Recommended action: upgrade in same window as Next framework migration.
-
-3. `tar-fs` chain (transitive high)
+## Remaining priority finding
+1. `tar-fs` chain (transitive high)
    - Comes through transitive dependency tree (not directly declared).
-   - Recommended action: re-run audit after Next/MDX upgrades and apply non-breaking `npm audit fix` updates.
+   - Recommended action: apply `npm audit fix` and recheck lockfile impact.
 
 ## Notes
-- Remaining moderate/low findings are transitive (`diff`, `js-yaml`, `lodash`, `nanoid`).
-- Many residual issues are expected to shrink after direct framework upgrades.
+- Remaining moderate findings are transitive (`lodash`, `nanoid`).
+- No remaining direct production critical vulnerabilities after framework upgrades.
 
-## Recommended rollout
-1. Upgrade `next` with smoke + route tests.
-2. Upgrade `next-mdx-remote` and verify MDX build/runtime rendering.
-3. Apply `npm audit fix` for non-breaking transitive updates.
-4. Re-run `npm audit --omit=dev --json` and compare counts.
+## Recommended next action
+1. Run `npm audit fix` and validate lockfile/test/build.
+2. Re-run `npm audit --omit=dev --json` and confirm the remaining high issue is cleared.
