@@ -17,11 +17,16 @@ const Container = styled.div`
   @media ${device.tablet} {
     padding-top: 50px;
     box-shadow: 0px 20px 20px 10px #0a20333d;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    overflow: hidden;
   }
 
   @media ${device.mobile} {
     padding-top: 25px;
     box-shadow: 0px 10px 10px 5px #0a20333d;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
   }
 `;
 
@@ -33,7 +38,7 @@ const NavItemList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  font-family: Bitter;
+  font-family: Delicious Handrawn;
   padding: 18px 0;
   text-align: center;
   list-style-type: none;
@@ -44,7 +49,7 @@ const NavItem = styled.li`
   }
 
   @media ${device.mobile} {
-    font-size: unset;
+    font-size: 24px;
   }
 `;
 
