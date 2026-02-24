@@ -55,6 +55,23 @@ Set these environment variables (for local dev in `.env.local`):
 - `npm run build` — build production bundle
 - `npm run start` — run production server
 - `npm run lint` — run Next.js ESLint checks
+- `npm test` — run Jest test suite
+
+## Quality gates
+
+Pull requests run these checks in CI:
+
+- `npm run lint`
+- `npm test -- --ci`
+- `npm run build`
+
+Run the same checks locally before opening a PR:
+
+```bash
+npm run lint
+npm test
+npm run build
+```
 
 ## Content workflow
 
