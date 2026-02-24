@@ -5,7 +5,7 @@ import Card from "../../components/Card";
 import { Heading } from "../../components/shared";
 
 import { device } from "../../constants";
-import { getMdxPreviews } from "../../lib/content";
+import { getMdxListStaticProps } from "../../lib/mdxPageData";
 
 import BlogCard from "../../features/blog/BlogCard";
 
@@ -53,12 +53,5 @@ export default function Blog({ postPreviews }) {
 }
 
 export async function getStaticProps() {
-  const postPreviews = await getMdxPreviews("_posts");
-
-  return {
-    props: {
-      postPreviews,
-    },
-    revalidate: 60,
-  };
+  return getMdxListStaticProps("_posts");
 }
