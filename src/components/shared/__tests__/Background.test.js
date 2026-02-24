@@ -23,8 +23,9 @@ jest.mock('../../../../public/assets/svg/fox.svg', () => ({
 describe('Background', () => {
   it('renders and responds to resize', () => {
     const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
+    const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
 
-    render(<Background />);
+    const { unmount } = render(<Background />);
 
     expect(addEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
 
@@ -32,6 +33,11 @@ describe('Background', () => {
       window.dispatchEvent(new Event('resize'));
     });
 
+    unmount();
+
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+
     addEventListenerSpy.mockRestore();
+    removeEventListenerSpy.mockRestore();
   });
 });

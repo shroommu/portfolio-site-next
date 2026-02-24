@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 import { device } from "../../constants";
@@ -134,15 +134,25 @@ export default function Background() {
 
   const foxTreeRef = useRef(null);
 
+  const updateSize = useCallback(() => {
+    const treeRect = foxTreeRef.current?.getBoundingClientRect();
+
+    if (!treeRect) {
+      return;
+    }
+
+    const { right, bottom } = treeRect;
+    setFoxOffset([right, bottom]);
+  }, []);
+
   useEffect(() => {
     window.addEventListener("resize", updateSize);
     updateSize();
-  }, []);
 
-  const updateSize = () => {
-    const { right, bottom } = foxTreeRef.current?.getBoundingClientRect();
-    setFoxOffset([right, bottom]);
-  };
+    return () => {
+      window.removeEventListener("resize", updateSize);
+    };
+  }, [updateSize]);
 
   return (
     <BackgroundContainer testId="background-container">
