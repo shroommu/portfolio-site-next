@@ -157,7 +157,11 @@ export default function Header({ location }) {
         </SocialsContainer>
       </NavigationBar>
       <Leaves />
-      <Menu menuId="mobile-site-menu" onNavigate={() => setShowMenu(false)} show={showMenu} />
+      <Menu
+        menuId="mobile-site-menu"
+        onNavigate={() => setShowMenu(false)}
+        show={showMenu}
+      />
     </Container>
   );
 }

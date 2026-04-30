@@ -1,34 +1,45 @@
 @font-face {
-    font-family: "Delicious Handrawn";
-    src: local('Delicious Handrawn'), url(../../public/assets/fonts/Delicious_Handrawn/DeliciousHandrawn-Regular.ttf) format('truetype');
+  font-family: "Delicious Handrawn";
+  src:
+    local("Delicious Handrawn"),
+    url(../../public/assets/fonts/Delicious_Handrawn/DeliciousHandrawn-Regular.ttf)
+      format("truetype");
 }
 
 @font-face {
-    font-family: "Bitter";
-    src: local('Bitter'), url(../../public/assets/fonts/Bitter/Bitter-VariableFont_wght.ttf) format('truetype');
+  font-family: "Bitter";
+  src:
+    local("Bitter"),
+    url(../../public/assets/fonts/Bitter/Bitter-VariableFont_wght.ttf)
+      format("truetype");
 }
 
-html, body {
-    padding: 0;
-    margin: 0;
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
-div, p, input, textarea, label {
-    font-family: Bitter;
+div,
+p,
+input,
+textarea,
+label {
+  font-family: Bitter;
 }
 
 button {
-    font: inherit;
-    color: inherit;
+  font: inherit;
+  color: inherit;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
-p {
-    display: block;
-    font-size: 14px;
-    line-height: 20px;
+p,
+li {
+  font-size: 14px;
+  line-height: 20px;
 }
