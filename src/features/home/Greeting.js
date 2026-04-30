@@ -102,19 +102,18 @@ export default function Greeting() {
           <TextContainer data-testid="greeting-text-container">
             <Heading data-testid="greeting-header">Hi, I&apos;m Alex!</Heading>
             <SubHeading data-testid="greeting-subheader">
-              Software Developer, Artist, Pokemon Enthusiast
+              Software Developer, Data Analyst, and Hobby Collector
             </SubHeading>
             <Paragraph>
               I&apos;m a curious person who loves to create and learn.
-              You&apos;ll find me anywhere that code and art interact, plus a
+              You&apos;ll find me anywhere that code and data interact, plus a
               few other places besides. Have a look around to see what I&apos;ve
               been working on!
             </Paragraph>
             <Paragraph>
-              I&apos;m located in the Seattle area, where I live with one person
-              and two cats. When I&apos;m not coding, writing, or otherwise
-              creating, I like to play video games (especially Pokemon Go) and
-              try new restaurants.
+              I&apos;m located in the Salt Lake Metropolitan area, where I live
+              with a pet rabbit who rules my life. When I&apos;m not coding, I
+              like to play video games and make art (especially cross stitch).
             </Paragraph>
             <Paragraph>Thanks for visiting my site!</Paragraph>
           </TextContainer>
