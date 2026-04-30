@@ -9,10 +9,10 @@ const Container = styled.div`
   flex-direction: column;
   background: ${colors.white};
   position: absolute;
-  top: ${p => p.show ? 0 : "-50%"};
+  top: ${(p) => (p.show ? 0 : "-50%")};
   margin-top: 75px;
   width: 100%;
-  transition: top .5s ease-in-out;
+  transition: top 0.5s ease-in-out;
 
   @media ${device.tablet} {
     padding-top: 50px;
