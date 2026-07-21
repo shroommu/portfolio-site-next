@@ -1,0 +1,68 @@
+---
+title: "Cancer Image Classifier (Master's Level Capstone Project)"
+date: "7-8-2026"
+excerpt: "Detecting cancer using machine learning and computer vision techniques."
+image: "/assets/images/projects/Cancer/cancer.webp"
+tags: ["computer vision", "pytorch", "image classifier"]
+---
+
+[Check out the Cancer Image Classifier site here!](https://cancer.alexakruckenberg.com)
+
+I'm nearing the end of my Master's in Data Science program, and decided this past school term that I was ready to tackle my capstone project. I toyed with a few ideas before settling on building an image classifier, which I knew how to build in concept but had not built in practice beyond a very simple version in a previous class.
+
+## Project Overview
+
+To fulfill the requirements of my capstone project, I needed to do the following:
+
+- Select a dataset and prepare it for model training
+- Build and train at least 4 models, and select the one that performed best
+- Create a user interface for interaction with the final model
+
+After looking at a few image sets, I decided to use the [MultiCancer Dataset](https://www.kaggle.com/datasets/ramachandraudupa/multicancer-dataset/data), which is a dataset compiled from a few different publicly available cancer image sets.
+
+## About the Dataset
+
+The dataset contains approximately 200,000 images, categorized by type and split into train and validation sets. The image types vary, from microscope slides of biopsies, to MRI scans of internal tumors, to photographs of skin conditions. Below is a sample of the images.
+
+<Image src="/assets/images/projects/Cancer/cancerImageSample.png" />
+
+## Data Preparation
+
+Of the 47 categories included, around 15 were not related to cancer, so I chose not to include those in the model. This decision proved to be a complicating factor in my data preprocessing pipeline, as each of the models I trained required that the unrelated images be excluded in a different way.
+
+## Data Preprocessing
+
+In my preprocessing pipeline, I applied data augmentation techniques such as color jitter, random rotation, and horizontal/vertical flipping. This was especially important for the image of biopsies, where the dye color and orientation of the cells was more likely to vary, but I found it was also important for the MRI images as not all of them were oriented the same way as one might have expected.
+
+## Model Selection
+
+I trained the following models:
+
+- A custom Convolutional Neural Network (CNN) without transfer learning
+- A ResNet CNN with transfer learning
+- A YOLO classification model
+- A Vision Transformer (ViT) model
+
+Each model was then evaluated on its training loss, accuracy, F1 score, and ROC AUC score, pictured below:
+
+<Image src="/assets/images/projects/Cancer/modelComparison.png" />
+
+Of the four, I determined that the YOLO model performed best by a decent margin, with the ViT coming in a close second. The ResNet CNN with transfer learning performed best after that, with the non-transfer learning CNN model performing the worst.
+
+## Model Deployment and User Interface
+
+I converted the YOLO model to ONNX format and created my API endpoints using Flask.
+
+The frontend was created using React, with components from the Material UI library. When an image is sent to the backend, the API returns the YOLO model's classification of the image, plus the model's confidence level in that classification.
+
+## Challenges
+
+The data had a significant class imbalance, with images of the pancreas numbering in the range of 500, while images of other organs largely numbered 4000 images or more. In order to account for this imbalance, I applied extra data augmentation to the minority classes, and trained each model with class weights applied. In spite of this, images of the pancreas are more likely to be misclassified as images of other organs.
+
+Each model required a custom data pipeline written in a different library. I started by using TensorFlow for the two CNN models, then learned the proprietary library for the YOLO model (Ultralytics), and finally learned Huggingface's libraries and PyTorch for the ViT model. This was all very time-consuming, but proved to be an interesting challenge, as I had previously only worked in Scikit-Learn and TensorFlow.
+
+Another challenge had to do with my personal hardware. With access to only 6 GB of VRAM, training each model took a significant amount of time. In order to cut down on some of that time, I trained each model on a stratified 10% sample of the dataset. The final model was trained on 100% of the data, and took nearly 12 hours to finish training.
+
+## Conclusion
+
+After only having created some regression models in my other projects to this point, I felt early on in this project that I had bitten off more than I could chew, especially since I only had 5 weeks to complete the whole thing. However, I was able to finish on time and I feel that I created a final product that fully demonstrates my capabilities as a data scientist. I look forward to my next big challenge!
